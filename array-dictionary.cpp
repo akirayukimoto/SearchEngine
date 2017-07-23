@@ -34,7 +34,7 @@ ArrayDictionary::addRecord( KeyType key, DataType record)
 		maxNumber = maxNumber * 2;
 		ArrayDictionaryNode *newArray = new ArrayDictionaryNode[maxNumber];
 		for (int i = 0; i < currentNumber; i++) {
-			newArray[i].key = strdup(array[i].key);
+			newArray[i].key = array[i].key;
 			//newArray[i].data = new DataType;
 			newArray[i].data = array[i].data;
 		}
@@ -53,7 +53,7 @@ DataType
 ArrayDictionary::findRecord( KeyType key)
 {
         // add your code here
-
+	
 	return NULL;
 }
 
