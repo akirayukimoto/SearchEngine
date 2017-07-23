@@ -11,8 +11,8 @@
 ArrayDictionary::ArrayDictionary()
 {
   // Add your code here
-	int maxNumber = 500;
-	int currentNumber = 0;
+	maxNumber = 500;
+	currentNumber = 0;
 	array = new ArrayDictionaryNode[maxNumber];
 }
 
