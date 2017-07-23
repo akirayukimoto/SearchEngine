@@ -81,6 +81,25 @@ BinarySearchDictionary::sort()
 
 void
 BinarySearchDictionary::shift(int n, int i) {
+	int parent = i;
+	int left = 2 * i + 1;
+	int right = 2 * i + 2;
+	
+	if (left < n && strcmp(array[left].key, array[parent].key) > 0) {
+		parent = left;
+	}
+	
+	if (right < n && strcmp(array[right].key, array[parent].key) > 0) {
+		parent = right;
+	}
+	
+	if (parent != i) {
+		ArrayDictionaryNode temp = array[i];
+		array[i] = array[parent];
+		array[parent] = temp;
+
+		shift(n, parent);
+	}
 }
 
 
