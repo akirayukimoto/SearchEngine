@@ -73,5 +73,9 @@ KeyType *
 ArrayDictionary::keys(int * n)
 {
         // Add yoru code here
-	return NULL;
+	KeyType *data = new KeyType[currentNumber];
+	for (int i = 0; i < currentNumber; i++) {
+		data[i] = strdup(array[i].key);
+	}
+	return data;
 }
