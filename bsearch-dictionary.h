@@ -19,6 +19,7 @@ public:
 
   // Sort array using heap sort.
   void sort();
+  void shift(int n, int i);
 
     // Removes one element from the table
   //bool removeElement(KeyType key);
@@ -28,5 +29,6 @@ public:
   //KeyType * keys(int * n);
 
   // Add other methods you may need
+  //void shift(int n, int i);
 };
 

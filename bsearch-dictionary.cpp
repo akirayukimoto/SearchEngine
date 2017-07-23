@@ -36,7 +36,13 @@ BinarySearchDictionary::findRecord( KeyType key)
 	int high = currentNumber - 1;
 	while (high >= low) {
 		int mid = (low + high) / 2;
-		
+		int result = strcmp(array[mid].key, key);
+		if (result == 0) {
+			// the element is found
+			return (DataType)array[mid].data;
+		}
+		else if (result > 0) high = mid - 1;
+		else low = mid + 1;
 	}
 	return NULL;
 }
@@ -57,6 +63,24 @@ BinarySearchDictionary::sort()
 	//for (int i = 0; i < currentNumber; i++) {
 	//	printf("%s\n", array[i].key);
 	//}
+	//
+	ArrayDictionaryNode temp;
+	
+	for (int i = currentNumber / 2 - 1 ; i >= 0; i--) {
+		shift(currentNumber, i);
+	}
+
+	for (int i = currentNumber - 1; i >= 0; i--) {
+		temp = array[0];
+		array[0] = array[i];
+		array[i] = temp;
+		shift(i, 0);
+	}
+
+}
+
+void
+BinarySearchDictionary::shift(int n, int i) {
 }
 
 
