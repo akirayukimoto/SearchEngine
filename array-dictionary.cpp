@@ -77,7 +77,7 @@ ArrayDictionary::removeElement(KeyType key)
 	if (flag == 0) return false;
 	ArrayDictionaryNode *temp = new ArrayDictionaryNode[maxNumber];
 	for (int j = 0; j < currentNumber; j++) {
-		if (strcmp(array[j].key, key) != 0) {
+		if (strcmp(array[j].key, key) > 0 || strcmp(array[j].key, key) < 0) {
 			temp[j].key = strdup(array[j].key);
 			temp[j].data = new DataType;
 			temp[j].data = (DataType *)array[j].data;
