@@ -76,12 +76,13 @@ ArrayDictionary::removeElement(KeyType key)
 	}
 	if (flag == 0) return false;
 	ArrayDictionaryNode *temp = new ArrayDictionaryNode[maxNumber];
-	for (int j = 0; j < currentNumber; j++) {
-		if (strcmp(array[j].key, key) > 0 || strcmp(array[j].key, key) < 0) {
-			temp[j].key = strdup(array[j].key);
-			temp[j].data = new DataType;
-			temp[j].data = (DataType *)array[j].data;
-		}
+	int j = 0;
+	for (int i = 0; i < currentNumber; i++) {
+		if (!strcmp(array[j].key, key)) continue;
+		temp[j].key = strdup(array[i].key);
+		temp[j].data = new DataType;
+		temp[j].data = (DataType *)array[i].data;
+		j++;
 	}
 	delete []array;
 	array = temp;
