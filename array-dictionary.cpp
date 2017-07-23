@@ -77,5 +77,6 @@ ArrayDictionary::keys(int * n)
 	for (int i = 0; i < currentNumber; i++) {
 		data[i] = strdup(array[i].key);
 	}
+	*n = currentNumber;
 	return data;
 }
