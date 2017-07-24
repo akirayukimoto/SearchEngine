@@ -37,17 +37,6 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 	//
 	
 	// find if the node exist
-	AVLNode *curr = root;
-	AVLNode *prev = NULL;
-	while (curr != NULL) {
-		prev = curr;
-		if (!strcmp(key, curr->key)) {
-			curr->data = record;
-			return false;
-		}
-		else if (strcmp(key, curr->key) < 0) curr = curr->left;
-		else curr = curr->right;
-	}
 	
 	AVLNode *n = new AVLNode();
 	n->key = key;
@@ -61,6 +50,18 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 		root = n;
 		nElements++;
 		return true;
+	}
+
+	AVLNode *curr = root;
+	AVLNode *prev = NULL;
+	while (curr != NULL) {
+		prev = curr;
+		if (!strcmp(key, curr->key)) {
+			curr->data = record;
+			return false;
+		}
+		else if (strcmp(key, curr->key) < 0) curr = curr->left;
+		else curr = curr->right;
 	}
 	
 	if (strcmp(key, prev->key) < 0) prev->left = n;
@@ -139,10 +140,10 @@ AVLDictionary::restructure(AVLNode * n) {
 		maxh = 0;
 		if (y->left != NULL) {
 			x = y->left;
-			maxh = x->height;
+			maxh = y->left->height;
 		}
-		if (y->right != NULL && y->left->height > maxh) {
-			x = z->right;
+		if (y->right != NULL && y->right->height > maxh) {
+			x = y->right;
 			maxh = x->height;
 		}
 		assert(x != NULL);
