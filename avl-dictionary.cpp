@@ -310,7 +310,6 @@ AVLDictionary::removeElement(KeyType key)
 			curr = NULL;
 		}
 		else {
-			parent->left = NULL;
 			parent->left = curr->left;
 			parent->left->height = curr->left->height;
 			restructure(parent);
