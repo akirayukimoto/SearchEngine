@@ -9,6 +9,7 @@
 HashDictionary::HashDictionary()
 {
   // Add your code here
+	nElements++;
 	for (int i = 0; i < MaxBuckets; i++) {
 		buckets[i] = NULL;
 	}
@@ -31,19 +32,20 @@ HashDictionary::addRecord( KeyType key, DataType record)
 {
   // Add your code here
 	int h = hash(key);
-	HashNode *curr = buckets[h];
-	while (!curr) {
-		if (!strcmp(key, curr->key)) {
-			curr->data = (DataType *)record;
+	HashNode *entry = buckets[h];
+	while (!entry) {
+		if (!strcmp(key, entry->key)) {
+			entry->data = record;
 			return false;
 		}
-		curr = curr->next;
+		entry = entry->next;
 	}
-	HashNode *entry = new HashNode();
+	entry = new HashNode();
 	entry->key = strdup(key);
-	entry->data = new DataType;
-	entry->data = (DataType *)record;
+	entry->data = record;
 	entry->next = buckets[h];
+	buckets[h] = entry;
+	nElements++;
 	return true;
 }
 
@@ -51,6 +53,14 @@ HashDictionary::addRecord( KeyType key, DataType record)
 DataType
 HashDictionary::findRecord( KeyType key)
 {
+	int h = hash(key);
+	HashNode *curr = buckets[h];
+	while (curr != NULL) {
+		if (!strcmp(key, curr->key)) {
+			return (DataType)curr->data;
+		}
+		curr = curr->next;
+	}
 	return NULL;
 }
 
@@ -59,7 +69,21 @@ bool
 HashDictionary::removeElement(KeyType key)
 {
   // Add your code here
-	return true;
+	int h = hash(key);
+	HashNode *curr = buckets[h];
+	HashNode *prev = NULL;
+	while (!curr) {
+		if (!strcmp(key, curr->key)) {
+			if (prev != NULL) prev = curr->next;
+			else buckets[h] = curr->next;
+			nElements--;
+			delete curr;
+			return true;
+		}
+		prev = curr;
+		curr = curr->next;
+	}
+	return false;
 }
 
 // Returns all the elements in the table as an array of strings.
