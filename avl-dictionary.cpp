@@ -289,7 +289,6 @@ AVLDictionary::removeElement(KeyType key)
 			}
 			else if (curr->left == NULL) {
 				if (curr == parent->right) {
-					parent->right = NULL;
 					parent->right = curr->right;
 					parent->right->height = curr->right->height;
 					delete curr;
@@ -297,30 +296,28 @@ AVLDictionary::removeElement(KeyType key)
 					restructure(parent);
 				}
 				else {
-					parent->left = NULL;
 					parent->left = curr->right;
 					parent->left->height = curr->right->height;
-					restructure(parent);
 					delete curr;
 					curr = NULL;
+					restructure(parent);
 				}
 			}
 			else if (curr->right == NULL) {
 				if (curr == parent->right) {
-					parent->right = NULL;
 					parent->right = curr->left;
 					parent->right->height = curr->left->height;
-					restructure(parent);
 					delete curr;
 					curr = NULL;
+					restructure(parent);
 				}
 				else {
 					parent->left = NULL;
 					parent->left = curr->left;
 					parent->left->height = curr->left->height;
-					restructure(parent);
 					delete curr;
 					curr = NULL;
+					restructure(parent);
 				}
 			}
 			else {
