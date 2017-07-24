@@ -399,7 +399,7 @@ AVLDictionary::removeElement(KeyType key)
 		restructure(curr->parent);
 		delete curr;
 	}
-	//if (parent->left == NULL && parent->right == NULL) parent->height = 1;
+	if (parent->left == NULL && parent->right == NULL) parent->height = 1;
 		
 	nElements--;
 	if (debug) {
