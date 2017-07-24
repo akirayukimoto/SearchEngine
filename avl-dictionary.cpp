@@ -233,7 +233,7 @@ AVLDictionary::restructure(AVLNode * n) {
 			maxh = b->right->height;
 		b->height = maxh + 1;
 		
-		z = p;
+		z = z->parent;
 	}
 }
 
