@@ -39,7 +39,7 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 	// find if the node exist
 	
 	AVLNode *n = new AVLNode();
-	n->key = strdup(key);
+	n->key = key;
 	n->data = record;
 	n->left = NULL;
 	n->right = NULL;
@@ -302,17 +302,12 @@ AVLDictionary::removeElement(KeyType key)
 	//}
 
 			if (curr->left == NULL && curr->right == NULL) {
-				if (parent != NULL) {
-				if (curr == parent->right) parent->right = NULL;
-				else parent->left = NULL;
+				if (curr == curr->parent->right) curr->parent->right = NULL;
+				else curr->parent->left = NULL;
 				
 				delete curr;
 				//curr = NULL;
 				restructure(parent);
-				}
-				else {
-					delete curr;
-				}
 			}
 			else if (curr->left == NULL) {
 				if (curr == parent->right) {
