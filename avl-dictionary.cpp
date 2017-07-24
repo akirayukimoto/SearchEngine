@@ -40,7 +40,7 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 	
 	AVLNode *n = new AVLNode();
 	n->key = strdup(key);
-	n->data = new DataType;
+	//n->data = new DataType;
 	n->data = record;
 	n->left = NULL;
 	n->right = NULL;
@@ -57,12 +57,12 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 	AVLNode *prev = NULL;
 	while (curr != NULL) {
 		prev = curr;
-		if (strcmp(key, curr->key) > 0) curr = curr->right;
-		else if (strcmp(key, curr->key) < 0) curr = curr->left;
-		else {
+		if (!strcmp(key, curr->key)) {
 			curr->data = record;
 			return false;
 		}
+		else if (strcmp(key, curr->key) < 0) curr = curr->left;
+		else curr = curr->right;
 	}
 	
 	if (strcmp(key, prev->key) < 0) prev->left = n;

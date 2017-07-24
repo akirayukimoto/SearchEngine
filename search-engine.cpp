@@ -1,12 +1,23 @@
 
 #include <string.h>
 #include "search-engine.h"
+#include "webcrawl.h"
+
+DictionaryType dictionaryType;
 
 SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   MiniHTTPD(port)
 {
   // Create dictionary of the indicated type
-
+	if (dictionaryType == ArrayDictionaryType)
+		_wordToURLList = new ArrayDictionary();
+	else if (dictionaryType == BinarySearchDictionaryType)
+		_wordToURLList = new BinarySearchDictionary();
+	else if (dictionaryType == HashDictionaryType)
+		_wordToURLList = new HashDictionary();
+	else if (dictionaryType == AVLDictionaryType)
+		_wordToURLList = new AVLDictionary();
+	else _wordToURLList = NULL;
   // Populate dictionary and sort it if necessary
 }
 
