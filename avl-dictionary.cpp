@@ -276,7 +276,7 @@ AVLDictionary::removeElement(KeyType key)
 	AVLNode *parent = NULL;
 	if (curr != root) parent = curr->parent;
 	else {
-		if (curr->left != NULL && curr->right != NULL) {
+		if (curr->left != NULL || curr->right != NULL) {
 			curr->left = curr->right->parent;
 	//	else {
 	//		//free((char *)root->key);
@@ -374,8 +374,8 @@ AVLDictionary::removeElement(KeyType key)
 		
 		}
 		else {
-			delete curr;
-			curr = NULL;
+			delete root;
+			root = NULL;
 		}
 	}
 	
