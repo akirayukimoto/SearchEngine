@@ -276,14 +276,15 @@ AVLDictionary::removeElement(KeyType key)
 	AVLNode *parent = NULL;
 	if (curr != root) parent = curr->parent;
 	else {
-		if (curr->left != NULL && curr->right != NULL)
+		if (curr->left != NULL && curr->right != NULL) {
 			curr->left = curr->right->parent;
-		else {
-			//free((char *)root->key);
-			delete root;
-			root = NULL;
-			return true;
-		}
+	//	else {
+	//		//free((char *)root->key);
+	//		delete root;
+	//		root = NULL;
+	//		nElements--;
+	//		return true;
+	//	}
 	//	parent = curr->left;
 	//	curr->right->parent = parent;
 	//	curr->left->right = curr->right;
@@ -291,87 +292,94 @@ AVLDictionary::removeElement(KeyType key)
 	//	curr->left = NULL;
 	//	curr->right = NULL;
 	//	curr->left = curr->right->parent;
-	}
+	//}
 
-	if (curr->left == NULL && curr->right == NULL) {
-		if (curr == parent->right) parent->right = NULL;
-		else parent->left = NULL;
-		delete curr;
-		curr = NULL;
-		restructure(parent);
-	}
-	else if (curr->left == NULL) {
-		if (curr == parent->right) {
-			parent->right = NULL;
-			parent->right = curr->right;
-			parent->right->height = curr->right->height;
+			if (curr->left == NULL && curr->right == NULL) {
+				if (curr == parent->right) parent->right = NULL;
+				else parent->left = NULL;
+				delete curr;
+				curr = NULL;
+				restructure(parent);
+			}
+			else if (curr->left == NULL) {
+				if (curr == parent->right) {
+					parent->right = NULL;
+					parent->right = curr->right;
+					parent->right->height = curr->right->height;
+				//delete curr;
+				//curr = NULL;
+					restructure(parent);
+					delete curr;
+					curr = NULL;
+				}
+				else {
+					parent->left = NULL;
+					parent->left = curr->left;
+					parent->left->height = curr->left->height;
 			//delete curr;
 			//curr = NULL;
-			restructure(parent);
-			delete curr;
+					restructure(parent);
+					delete curr;
+					curr = NULL;
+				}
+			}
+			else if (curr->right == NULL) {
+				if (curr == parent->right) {
+					parent->right = NULL;
+					parent->right = curr->right;
+					parent->right->height = curr->right->height;
+				//delete curr;
 			//curr = NULL;
-		}
-		else {
-			parent->left = NULL;
-			parent->left = curr->left;
-			parent->left->height = curr->left->height;
+					restructure(parent);
+					delete curr;
+					curr = NULL;
+				}
+				else {
+					parent->left = NULL;
+					parent->left = curr->left;
+					parent->left->height = curr->left->height;
 			//delete curr;
 			//curr = NULL;
-			restructure(parent);
-			delete curr;
-			curr = NULL;
-		}
-	}
-	else if (curr->right == NULL) {
-		if (curr == parent->right) {
-			parent->right = NULL;
-			parent->right = curr->right;
-			parent->right->height = curr->right->height;
-			//delete curr;
-			//curr = NULL;
-			restructure(parent);
-			delete curr;
-			curr = NULL;
-		}
-		else {
-			parent->left = NULL;
-			parent->left = curr->left;
-			parent->left->height = curr->left->height;
-			//delete curr;
-			//curr = NULL;
-			restructure(parent);
-			delete curr;
-			curr = NULL;
-		}
-	}
-	else {
-		AVLNode *prev = curr->left;
-		while (prev->right != NULL) {
-			prev = prev->right;
-		}
-		curr->key = prev->key;
-		curr->data = prev->data;
-
-		curr = prev;
-
-		if (curr->left == NULL) {
-			if (curr->parent->left == curr) {
-				curr->parent->right = curr->right;
+					restructure(parent);
+					delete curr;
+					curr = NULL;
+				}
 			}
 			else {
-				curr->parent->left = curr->right;
+				AVLNode *prev = curr->left;
+				while (prev->right != NULL) {
+					prev = prev->right;
+				}
+				curr->key = prev->key;
+				curr->data = prev->data;
+		
+				curr = prev;
+	
+				if (curr->left == NULL) {
+					if (curr->parent->left == curr) {
+						curr->parent->right = curr->right;
+					}
+					else {
+						curr->parent->left = curr->right;
+					}
+				}
+				else {
+					if (curr->parent->right == curr)
+						curr->parent->right = curr->left;
+					else curr->parent->left = curr->left;
+				}
+				restructure(curr->parent);
+				delete curr;
 			}
+		
 		}
 		else {
-			if (curr->parent->right == curr)
-				curr->parent->right = curr->left;
-			else curr->parent->left = curr->left;
+			delete curr;
+			curr = NULL;
 		}
-		restructure(curr->parent);
-		delete curr;
 	}
 	
-	
+	nElements--;
 	if (debug) {
 		printf("---------- After -----------------\n");
 		printNode("", root, 0);
