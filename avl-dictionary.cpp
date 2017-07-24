@@ -310,7 +310,6 @@ AVLDictionary::removeElement(KeyType key)
 				else curr->parent->left = NULL;
 				
 				delete curr;
-				curr = NULL;
 				restructure(parent);
 			}
 			else if (curr->left == NULL) {
@@ -369,7 +368,7 @@ AVLDictionary::removeElement(KeyType key)
 				curr = prev;
 	
 				if (curr->left == NULL) {
-					if (curr->parent->left == curr) {
+					if (curr->parent->right == curr) {
 						curr->parent->right = curr->right;
 					}
 					else {
