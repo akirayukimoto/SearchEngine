@@ -164,7 +164,7 @@ AVLDictionary::restructure(AVLNode * n) {
 				c = y;
 				t0 = z->left;
 				t1 = x->left;
-				t2 = y->left;
+				t2 = x->right;
 				t3 = y->right;
 			}
 		}
@@ -199,9 +199,11 @@ AVLDictionary::restructure(AVLNode * n) {
 		b->parent = p;
 		b->left = a;
 		b->right = c;
+
 		a->parent = b;
 		a->left = t0;
 		a->right = t1;
+
 		c->parent = b;
 		c->left = t2;
 		c->right = t3;
@@ -222,6 +224,12 @@ AVLDictionary::restructure(AVLNode * n) {
 		if (c->right != NULL && c->right->height > maxh)
 			maxh = c->right->height;
 		c->height = maxh + 1;
+
+		maxh = 0;
+		if (b->left != NULL) maxh = b->left->height;
+		if (b->right != NULL && b->right->height > maxh)
+			maxh = b->right->height;
+		b->height = maxh + 1;
 		
 		z = p;
 	}
