@@ -134,7 +134,7 @@ AVLDictionary::restructure(AVLNode * n) {
 		}
 		if (z->right != NULL && z->right->height > maxh) {
 			y = z->right;
-			maxh = y->height;
+			//maxh = y->height;
 		}
 		assert(y != NULL);
 
@@ -146,7 +146,7 @@ AVLDictionary::restructure(AVLNode * n) {
 		}
 		if (y->right != NULL && y->right->height > maxh) {
 			x = y->right;
-			maxh = x->height;
+			//maxh = x->height;
 		}
 		assert(x != NULL);
 
