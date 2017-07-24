@@ -272,16 +272,18 @@ AVLDictionary::removeElement(KeyType key)
 	}
 	if (curr == NULL) return false;
 
-	AVLNode *parent = curr->parent;
-	//if (curr != root) parent = curr->parent;
-	//else {
-		//parent = curr->left;
-		//curr->right->parent = parent;
+	//AVLNode *parent = curr->parent;
+	AVLNode *parent = NULL;
+	if (curr != root) parent = curr->parent;
+	else {
+	//	parent = curr->left;
+	//	curr->right->parent = parent;
 	//	curr->left->right = curr->right;
 	//	parent = curr->left;
 	//	curr->left = NULL;
 	//	curr->right = NULL;
-	//}
+		curr->left = curr->right->parent;
+	}
 
 	if (curr->left == NULL && curr->right == NULL) {
 		if (curr == parent->right) parent->right = NULL;
@@ -292,15 +294,17 @@ AVLDictionary::removeElement(KeyType key)
 	}
 	else if (curr->left == NULL) {
 		if (curr == parent->right) {
+			parent->right = NULL;
 			parent->right = curr->right;
 			parent->right->height = curr->right->height;
 			//delete curr;
 			//curr = NULL;
 			restructure(parent);
 			delete curr;
-			curr = NULL;
+			//curr = NULL;
 		}
 		else {
+			parent->left = NULL;
 			parent->left = curr->left;
 			parent->left->height = curr->left->height;
 			//delete curr;
@@ -312,6 +316,7 @@ AVLDictionary::removeElement(KeyType key)
 	}
 	else if (curr->right == NULL) {
 		if (curr == parent->right) {
+			parent->right = NULL;
 			parent->right = curr->right;
 			parent->right->height = curr->right->height;
 			//delete curr;
@@ -321,6 +326,7 @@ AVLDictionary::removeElement(KeyType key)
 			curr = NULL;
 		}
 		else {
+			parent->left = NULL;
 			parent->left = curr->left;
 			parent->left->height = curr->left->height;
 			//delete curr;
@@ -337,6 +343,8 @@ AVLDictionary::removeElement(KeyType key)
 		}
 		curr->key = prev->key;
 		curr->data = prev->data;
+
+		curr = prev;
 
 		if (curr->left == NULL) {
 			if (curr->parent->left == curr) {
