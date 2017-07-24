@@ -286,17 +286,28 @@ AVLDictionary::removeElement(KeyType key)
 	}	
 	else if (curr->left == NULL) {
 		if (curr == parent->right) {
-		parent->right = curr->right;
-		parent->right->height = curr->right->height;
-		delete curr;
-		curr = NULL;
-		restructure(parent);
+			parent->right = curr->right;
+			parent->right->height = curr->right->height;
+			delete curr;
+			curr = NULL;
+			restructure(parent);
 		}
 		else {
 			parent->left = curr->right;
 			parent->left->height = curr->right->height;
 			delete curr;
 			curr = NULL;
+			AVLNode *temp = parent;
+			int maxh;
+			while (temp != NULL) {
+				maxh = 0;
+				if (temp->left != NULL) 
+					maxh = temp->left->height;
+				if (temp->right != NULL && temp->right->height > maxh) 
+					maxh = temp->right->height;
+				temp->height = maxh + 1;
+				temp = temp->parent;
+			}
 			restructure(parent);
 		}
 	}
@@ -343,7 +354,7 @@ AVLDictionary::removeElement(KeyType key)
 		restructure(curr->parent);
 		delete curr;
 	}
-	if (parent->left == NULL && parent->right == NULL) parent->height = 1;
+	//if (parent->left == NULL && parent->right == NULL) parent->height = 1;
 		
 	nElements--;
 	if (debug) {
