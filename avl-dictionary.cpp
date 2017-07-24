@@ -108,7 +108,8 @@ AVLDictionary::restructure(AVLNode * n) {
         // See class notes
 
 	// Add your implementation here
-	AVLNode *z = n->parent;
+	//AVLNode *z = n->parent;
+	AVLNode *z = n;
 	while (z != NULL) {
 		int hleft = 0;
 		if (z->left != NULL) {
