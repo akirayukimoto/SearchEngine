@@ -391,7 +391,7 @@ AVLDictionary::removeElement(KeyType key)
 	//	}
 	//}
 	
-	nElements--;
+	//nElements--;
 	if (debug) {
 		printf("---------- After -----------------\n");
 		printNode("", root, 0);
