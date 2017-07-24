@@ -115,8 +115,9 @@ AVLDictionary::restructure(AVLNode * n) {
 			hleft = z->left->height;
 		}
 		int hright = 0;
-		if (z->right != NULL) hright = z->right->height;
-		int hdiff = hleft - hright;
+		if (z->right != NULL) 
+			hright = z->right->height;
+		int hdiff = hright - hleft;
 		if (hdiff < 0) hdiff = -hdiff;
 		if (hleft > hright) z->height = hleft + 1;
 		else z->height = hright + 1;
