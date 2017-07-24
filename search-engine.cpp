@@ -3,7 +3,7 @@
 #include "search-engine.h"
 #include "webcrawl.h"
 
-DictionaryType dictionaryType;
+DictionaryType dictType;
 
 SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   MiniHTTPD(port)
@@ -19,6 +19,32 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		_wordToURLList = new AVLDictionary();
 	else _wordToURLList = NULL;
   // Populate dictionary and sort it if necessary
+	
+	int count = 0;
+	int countLine = 0;
+	char c;
+
+	char *url;
+	char *description;
+	int i;
+	char *temp = new char[500];
+	char *element;
+	FILE *f1 = fopen("url.txt", "r");
+	if (f1 == NULL) {
+		printf("File is not found\n");
+		exit(1);
+	}
+	while(1) {
+		c = fgetc(f1);
+		if (c == '\n') {
+			countLine++;
+		}
+		if (c == EOF) break;
+	}
+	fclose(f1);
+	int numUrl = countLine / 3;
+	
+
 }
 
 void
