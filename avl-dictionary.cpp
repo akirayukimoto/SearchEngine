@@ -282,7 +282,8 @@ AVLDictionary::removeElement(KeyType key)
 			if (curr->left == NULL && curr->right == NULL) {
 				if (curr == curr->parent->right) curr->parent->right = NULL;
 				else curr->parent->left = NULL;
-				
+				if (curr->parent->left == NULL && curr->parent->right == NULL) 
+					curr->parent->height--;
 				delete curr;
 				restructure(parent);
 			}
