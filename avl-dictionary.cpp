@@ -165,7 +165,7 @@ AVLDictionary::restructure(AVLNode * n) {
 				c = y;
 				t0 = z->left;
 				t1 = x->left;
-				t2 = y->left;
+				t2 = x->right;
 				t3 = y->right;
 			}
 		}
