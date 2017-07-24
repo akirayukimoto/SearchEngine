@@ -300,11 +300,11 @@ AVLDictionary::removeElement(KeyType key)
 	//	curr->right = NULL;
 	//	curr->left = curr->right->parent;
 	
-			if (curr == root) {
-				delete curr;
-				root = NULL;
-			}
-			else if (curr->left == NULL && curr->right == NULL) {
+		//	if (curr == root) {
+		//		delete curr;
+		//		root = NULL;
+		//	}
+			if (curr->left == NULL && curr->right == NULL) {
 				if (curr == curr->parent->right) curr->parent->right = NULL;
 				else curr->parent->left = NULL;
 				
@@ -325,7 +325,7 @@ AVLDictionary::removeElement(KeyType key)
 					restructure(parent);
 				}
 				else {
-					//parent->left = NULL;
+					parent->left = NULL;
 					parent->left = curr->right;
 					parent->left->height = curr->right->height;
 			//delete curr;
