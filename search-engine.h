@@ -1,4 +1,9 @@
 
+#include <string.h>
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+
 #include "minihttpd.h"
 #include "dictionary.h"
 #include "array-dictionary.h"
