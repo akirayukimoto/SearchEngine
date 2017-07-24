@@ -281,6 +281,7 @@ AVLDictionary::removeElement(KeyType key)
 		else {
 			//free((char *)root->key);
 			delete root;
+			root = NULL;
 			return true;
 		}
 	//	parent = curr->left;
