@@ -56,12 +56,12 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 	AVLNode *prev = NULL;
 	while (curr != NULL) {
 		prev = curr;
-		if (key == curr->key) {
+		if (strcmp(key, curr->key) > 0) curr = curr->right;
+		else if (strcmp(key, curr->key) < 0) curr = curr->left;
+		else {
 			curr->data = record;
 			return false;
 		}
-		else if (key < curr->key) curr = curr->left;
-		else curr = curr->right;
 	}
 	
 	if (strcmp(key, prev->key) < 0) prev->left = n;
