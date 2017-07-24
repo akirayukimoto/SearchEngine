@@ -77,6 +77,7 @@ HashDictionary::removeElement(KeyType key)
 			if (prev != NULL) prev = curr->next;
 			else buckets[h] = curr->next;
 			nElements--;
+			free((KeyType *)curr->key);
 			delete curr;
 			return true;
 		}
