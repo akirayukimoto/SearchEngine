@@ -9,7 +9,7 @@
 HashDictionary::HashDictionary()
 {
   // Add your code here
-	nElements++;
+	nElements = 0;
 	for (int i = 0; i < MaxBuckets; i++) {
 		buckets[i] = NULL;
 	}
