@@ -272,16 +272,16 @@ AVLDictionary::removeElement(KeyType key)
 	}
 	if (curr == NULL) return false;
 
-	AVLNode *parent = NULL;
-	if (curr != root) parent = curr->parent;
-	else {
+	AVLNode *parent = curr->parent;
+	//if (curr != root) parent = curr->parent;
+	//else {
 		//parent = curr->left;
 		//curr->right->parent = parent;
-		curr->left->right = curr->right;
-		parent = curr->left;
-		curr->left = NULL;
-		curr->right = NULL;
-	}
+	//	curr->left->right = curr->right;
+	//	parent = curr->left;
+	//	curr->left = NULL;
+	//	curr->right = NULL;
+	//}
 
 	if (curr->left == NULL && curr->right == NULL) {
 		if (curr == parent->right) parent->right = NULL;
