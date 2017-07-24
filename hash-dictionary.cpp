@@ -33,7 +33,7 @@ HashDictionary::addRecord( KeyType key, DataType record)
   // Add your code here
 	int h = hash(key);
 	HashNode *entry = buckets[h];
-	while (!entry) {
+	while (entry != NULL) {
 		if (!strcmp(key, entry->key)) {
 			entry->data = record;
 			return false;
