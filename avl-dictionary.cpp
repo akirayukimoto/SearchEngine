@@ -280,8 +280,8 @@ AVLDictionary::removeElement(KeyType key)
 	if (curr->left == NULL && curr->right == NULL) {
 		if (curr == curr->parent->right) curr->parent->right = NULL;
 		else curr->parent->left = NULL;
-		//if (curr->parent->left == NULL && curr->parent->right == NULL)
-		//	curr->parent->height = 1;
+		if (curr->parent->left == NULL && curr->parent->right == NULL)
+			curr->parent->height = 1;
 		delete curr;
 		restructure(parent);
 	}	
@@ -300,6 +300,8 @@ AVLDictionary::removeElement(KeyType key)
 			delete curr;
 			curr = NULL;
 		}
+		if (curr->parent->left == NULL && curr->parent->right == NULL)
+			curr->parent->height = 1;
 	}
 	else if (curr->right == NULL) {
 		if (curr == parent->right) {
@@ -316,6 +318,8 @@ AVLDictionary::removeElement(KeyType key)
 			delete curr;
 			curr = NULL;
 		}
+		if (curr->parent->left == NULL && curr->parent->right == NULL)
+			curr->parent->height = 1;
 	}
 	else {
 		AVLNode *prev = curr->left;
@@ -343,7 +347,7 @@ AVLDictionary::removeElement(KeyType key)
 		restructure(curr->parent);
 		delete curr;
 	}
-	//if (parent->left == NULL && parent->right == NULL) parent->height = 1;
+	if (parent->left == NULL && parent->right == NULL) parent->height = 1;
 		
 	nElements--;
 	if (debug) {
