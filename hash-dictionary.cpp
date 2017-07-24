@@ -72,7 +72,7 @@ HashDictionary::removeElement(KeyType key)
 	int h = hash(key);
 	HashNode *curr = buckets[h];
 	HashNode *prev = NULL;
-	while (!curr) {
+	while (curr != NULL) {
 		if (!strcmp(key, curr->key)) {
 			if (prev != NULL) prev = curr->next;
 			else buckets[h] = curr->next;
