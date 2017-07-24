@@ -30,7 +30,7 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 	}
 	
 	// Add your implementation here
-
+	
 	//Find node to insert into 
 	//Node does not exist. Create it.
 	//Height might not be valid anymore.
@@ -62,6 +62,125 @@ AVLDictionary::restructure(AVLNode * n) {
         // See class notes
 
 	// Add your implementation here
+	AVLNode *z = n->parent;
+	while (z != NULL) {
+		int hleft = 0;
+		if (z->left != NULL) {
+			hleft = z->left->height;
+		}
+		int hright = 0;
+		if (z->right != NULL) hright = z->right->height;
+		int hdiff = hleft - hright;
+		if (hdiff < 0) hdiff = -hdiff;
+		if (hleft > hright) z->height = hleft + 1;
+		else z->height = hright + 1;
+		if (hdiff <= 1) {
+			z = z->parent;
+			continue;
+		}
+
+		AVLNode *y = NULL;
+		int maxh = 0;
+		if (z->left != NULL) {
+			y = z->left;
+			maxh = y->height;
+		}
+		if (z->right != NULL && z->right->height > maxh) {
+			y = z->right;
+			maxh = y->height;
+		}
+		assert(y != NULL);
+
+		AVLNode *x = NULL;
+		maxh = 0;
+		if (y->left != NULL) {
+			x = y->left;
+			maxh = x->height;
+		}
+		if (y->right != NULL && y->left->height > maxh) {
+			x = z->right;
+			maxh = x->height;
+		}
+		assert(x != NULL);
+
+		AVLNode *a, *b, *c, *t0, *t1, *t2, *t3;
+		if (z->right == y) {
+			if (y->right == x) {
+				a = z;
+				b = y;
+				c = x;
+				t0 = z->left;
+				t1 = y->left;
+				t2 = x->left;
+				t3 = x->right;
+			}
+			else {
+				a = z;
+				b = x;
+				c = y;
+				t0 = z->left;
+				t1 = x->left;
+				t2 = y->left;
+				t3 = y->right;
+			}
+		}
+		else {
+			if (y->left == x) {
+				a = x;
+				b = y;
+				c = z;
+				t0 = x->left;
+				t1 = x->right;
+				t2 = y->right;
+				t3 = z->right;
+			}
+			else {
+				a = y;
+				b = x;
+				c = z;
+				t0 = y->left;
+				t1 = x->left;
+				t2 = x->right;
+				t3 = z->right;
+			}
+		}
+
+		AVLNode *p = z->parent;
+		if (p != NULL) {
+			if (p->left == z) p->left = b;
+			else p->right = b;
+		}
+		else root = b;
+
+		b->parent = p;
+		b->left = a;
+		b->right = c;
+		a->parent = b;
+		a->left = t0;
+		a->right = t1;
+		c->parent = b;
+		c->left = t2;
+		c->right = t3;
+
+		if (t0 != NULL) t0->parent = a;
+		if (t1 != NULL) t1->parent = a;
+		if (t2 != NULL) t2->parent = c;
+		if (t3 != NULL) t3->parent = c;
+
+		maxh = 0;
+		if (a->left != NULL) maxh = a->left->height;
+		if (a->right != NULL && a->right->height > maxh)
+			maxh = a->right->height;
+		a->height = maxh + 1;
+
+		maxh = 0;
+		if (c->left != NULL) maxh = c->left->height;
+		if (c->right != NULL && c->right->height > maxh)
+			maxh = c->right->height;
+		c->height = maxh + 1;
+		
+		z = p;
+	}
 }
 
 // Find a key in the dictionary and return corresponding record or NULL
@@ -69,7 +188,12 @@ DataType
 AVLDictionary::findRecord( KeyType key)
 {
         // Add your implementation here
-
+	AVLNode *curr = root;
+	while (curr != NULL) {
+		if (!strcmp(curr->key, key)) return (DataType)curr->data;
+		else if (strcmp(curr->key, key) > 0) curr = curr->left;
+		else curr = curr->right;
+	}
 	return NULL;
 }
 
