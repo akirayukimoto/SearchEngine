@@ -384,6 +384,17 @@ AVLDictionary::removeElement(KeyType key)
 				curr->parent->right = curr->left;
 			else curr->parent->left = curr->left;
 		}
+			AVLNode *temp = parent;
+			int maxh;
+			while (temp != NULL) {
+				maxh = 0;
+				if (temp->left != NULL) 
+					maxh = temp->left->height;
+				if (temp->right != NULL && temp->right->height > maxh) 
+					maxh = temp->right->height;
+				temp->height = maxh + 1;
+				temp = temp->parent;
+			}
 		restructure(curr->parent);
 		delete curr;
 	}
