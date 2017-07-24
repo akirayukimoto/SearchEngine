@@ -383,7 +383,7 @@ AVLDictionary::removeElement(KeyType key)
 			if (curr->parent->right == curr)
 				curr->parent->right = curr->left;
 			else curr->parent->left = curr->left;
-		}
+		//}
 			AVLNode *temp = parent;
 			int maxh;
 			while (temp != NULL) {
@@ -395,6 +395,7 @@ AVLDictionary::removeElement(KeyType key)
 				temp->height = maxh + 1;
 				temp = temp->parent;
 			}
+		}
 		restructure(curr->parent);
 		delete curr;
 	}
