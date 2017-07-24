@@ -291,9 +291,6 @@ AVLDictionary::removeElement(KeyType key)
 					parent->right = NULL;
 					parent->right = curr->right;
 					parent->right->height = curr->right->height;
-				//delete curr;
-				//curr = NULL;
-					//restructure(parent);
 					delete curr;
 					curr = NULL;
 					restructure(parent);
@@ -312,8 +309,6 @@ AVLDictionary::removeElement(KeyType key)
 					parent->right = NULL;
 					parent->right = curr->left;
 					parent->right->height = curr->left->height;
-				//delete curr;
-			//curr = NULL;
 					restructure(parent);
 					delete curr;
 					curr = NULL;
@@ -322,8 +317,6 @@ AVLDictionary::removeElement(KeyType key)
 					parent->left = NULL;
 					parent->left = curr->left;
 					parent->left->height = curr->left->height;
-			//delete curr;
-			//curr = NULL;
 					restructure(parent);
 					delete curr;
 					curr = NULL;
