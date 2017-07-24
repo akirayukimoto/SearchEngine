@@ -275,15 +275,12 @@ AVLDictionary::removeElement(KeyType key)
 
 	AVLNode *parent = NULL;
 	if (curr != root) parent = curr->parent;
-	else {
-		//if (curr->left != NULL && curr->right != NULL) 
-		curr->left = curr->right->parent;
-	}
+	else curr->left = curr->right->parent;
 			if (curr->left == NULL && curr->right == NULL) {
 				if (curr == curr->parent->right) curr->parent->right = NULL;
 				else curr->parent->left = NULL;
 				if (curr->parent->left == NULL && curr->parent->right == NULL) 
-					curr->parent->height--;
+					curr->parent->height = 1;
 				delete curr;
 				restructure(parent);
 			}
