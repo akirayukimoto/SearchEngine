@@ -289,38 +289,18 @@ AVLDictionary::removeElement(KeyType key)
 		if (curr == parent->right) {
 			parent->right = curr->right;
 			parent->right->height = curr->right->height;
+			restructure(parent);
 			delete curr;
 			curr = NULL;
-			AVLNode *temp = parent;
-			int maxh;
-		//	while (temp != NULL) {
-				maxh = 0;
-				if (temp->left != NULL)
-					maxh = temp->left->height;
-				if (temp->right != NULL && temp->right->height > maxh)
-					maxh = temp->right->height;
-				temp->height = maxh + 1;
-		//		temp = temp->parent;
-		//	}
-			restructure(parent);
 		}
 		else {
 			parent->left = curr->right;
 			parent->left->height = curr->right->height;
 			delete curr;
 			curr = NULL;
-			AVLNode *temp = parent;
-			int maxh;
-			//while (temp != NULL) {
-				maxh = 0;
-				if (temp->left != NULL) 
-					maxh = temp->left->height;
-				if (temp->right != NULL && temp->right->height > maxh) 
-					maxh = temp->right->height;
-				temp->height = maxh + 1;
-			//	temp = temp->parent;
-			//}
 			restructure(parent);
+			delete curr;
+			curr = NULL;
 		}
 	}
 	else if (curr->right == NULL) {
@@ -329,18 +309,9 @@ AVLDictionary::removeElement(KeyType key)
 			parent->right->height = curr->left->height;
 			delete curr;
 			curr = NULL;
-			AVLNode *temp = parent;
-			int maxh;
-			//while (temp != NULL) {
-				maxh = 0;
-				if (temp->left != NULL) 
-					maxh = temp->left->height;
-				if (temp->right != NULL && temp->right->height > maxh) 
-					maxh = temp->right->height;
-				temp->height = maxh + 1;
-			//	temp = temp->parent;
-			//}
 			restructure(parent);
+			delete curr;
+			curr = NULL;
 		}
 		else {
 			parent->left = NULL;
@@ -348,18 +319,9 @@ AVLDictionary::removeElement(KeyType key)
 			parent->left->height = curr->left->height;
 			delete curr;
 			curr = NULL;
-			AVLNode *temp = parent;
-			int maxh;
-		//	while (temp != NULL) {
-				maxh = 0;
-				if (temp->left != NULL) 
-					maxh = temp->left->height;
-				if (temp->right != NULL && temp->right->height > maxh) 
-					maxh = temp->right->height;
-				temp->height = maxh + 1;
-				temp = temp->parent;
-		//	}
 			restructure(parent);
+			delete curr;
+			curr = NULL;
 		}
 	}
 	else {
@@ -384,18 +346,6 @@ AVLDictionary::removeElement(KeyType key)
 			if (curr->parent->right == curr)
 				curr->parent->right = curr->left;
 			else curr->parent->left = curr->left;
-		//}
-			AVLNode *temp = parent;
-			int maxh;
-		//	while (temp != NULL) {
-				maxh = 0;
-				if (temp->left != NULL) 
-					maxh = temp->left->height;
-				if (temp->right != NULL && temp->right->height > maxh) 
-					maxh = temp->right->height;
-				temp->height = maxh + 1;
-		//		temp = temp->parent;
-		//	}
 		}
 		restructure(curr->parent);
 		delete curr;
