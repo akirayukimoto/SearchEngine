@@ -286,32 +286,40 @@ AVLDictionary::removeElement(KeyType key)
 		if (curr == parent->right) {
 			parent->right = curr->right;
 			parent->right->height = curr->right->height;
-			delete curr;
+			//delete curr;
 			//curr = NULL;
 			restructure(parent);
+			delete curr;
+			curr = NULL;
 		}
 		else {
 			parent->left = curr->left;
 			parent->left->height = curr->left->height;
-			delete curr;
+			//delete curr;
 			//curr = NULL;
 			restructure(parent);
+			delete curr;
+			curr = NULL;
 		}
 	}
 	else if (curr->right == NULL) {
 		if (curr == parent->right) {
 			parent->right = curr->right;
 			parent->right->height = curr->right->height;
-			delete curr;
+			//delete curr;
 			//curr = NULL;
 			restructure(parent);
+			delete curr;
+			curr = NULL;
 		}
 		else {
 			parent->left = curr->left;
 			parent->left->height = curr->left->height;
-			delete curr;
+			//delete curr;
 			//curr = NULL;
 			restructure(parent);
+			delete curr;
+			curr = NULL;
 		}
 	}
 	else {
