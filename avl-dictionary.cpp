@@ -300,8 +300,8 @@ AVLDictionary::removeElement(KeyType key)
 			delete curr;
 			curr = NULL;
 		}
-		if (curr->parent->left == NULL && curr->parent->right == NULL)
-			curr->parent->height = 1;
+		if (parent->left == NULL && parent->right == NULL)
+			parent->height = 1;
 	}
 	else if (curr->right == NULL) {
 		if (curr == parent->right) {
@@ -318,8 +318,8 @@ AVLDictionary::removeElement(KeyType key)
 			delete curr;
 			curr = NULL;
 		}
-		if (curr->parent->left == NULL && curr->parent->right == NULL)
-			curr->parent->height = 1;
+		if (parent->left == NULL && parent->right == NULL)
+			parent->height = 1;
 	}
 	else {
 		AVLNode *prev = curr->left;
