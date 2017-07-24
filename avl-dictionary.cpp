@@ -311,15 +311,15 @@ AVLDictionary::removeElement(KeyType key)
 			curr = NULL;
 			AVLNode *temp = parent;
 			int maxh;
-			while (temp != NULL) {
+			//while (temp != NULL) {
 				maxh = 0;
 				if (temp->left != NULL) 
 					maxh = temp->left->height;
 				if (temp->right != NULL && temp->right->height > maxh) 
 					maxh = temp->right->height;
 				temp->height = maxh + 1;
-				temp = temp->parent;
-			}
+			//	temp = temp->parent;
+			//}
 			restructure(parent);
 		}
 	}
