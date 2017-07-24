@@ -50,14 +50,14 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 	}
 	
 	AVLNode *n = new AVLNode();
-	n->key = strdup(key);
+	n->key = key;
 	n->data = record;
 	n->left = NULL;
 	n->right = NULL;
 	n->parent = NULL;
 	n->height = 1;
 
-	if (prev == NULL) {
+	if (root == NULL) {
 		root = n;
 		nElements++;
 		return true;
