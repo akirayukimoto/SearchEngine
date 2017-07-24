@@ -254,6 +254,82 @@ AVLDictionary::removeElement(KeyType key)
 
 
 	// Add your implementation here
+
+	AVLNode *curr = root;
+	while (curr != NULL) {
+		if (!strcmp(curr->key, key)) break;
+		else if (strcmp(curr->key, key) > 0) curr = curr->left;
+		else curr = curr->right;
+	}
+	if (curr == NULL) return false;
+
+	AVLNode *parent = NULL;
+	if (curr != root) parent = curr->parent;
+	else curr->left = curr->right->parent;
+
+	if (curr->left == NULL && curr->right == NULL) {
+		if (curr == parent->right) parent->right = NULL;
+		else parent->left = NULL;
+		delete curr;
+		restructure(parent);
+	}
+	else if (curr->left == NULL) {
+		if (curr == parent->right) {
+			parent->right = curr->right;
+			parent->right->height = curr->right->height;
+			delete curr;
+			curr = NULL;
+			restructure(parent);
+		}
+		else {
+			parent->left = curr->left;
+			parent->left->height = curr->left->height;
+			delete curr;
+			curr = NULL;
+			restructure(parent);
+		}
+	}
+	else if (curr->right == NULL) {
+		if (curr == parent->right) {
+			parent->right = curr->right;
+			parent->right->height = curr->right->height;
+			delete curr;
+			curr = NULL;
+			restructure(parent);
+		}
+		else {
+			parent->left = curr->left;
+			parent->left->height = curr->left->height;
+			delete curr;
+			curr = NULL;
+			restructure(parent);
+		}
+	}
+	else {
+		AVLNode *prev = curr->left;
+		while (prev->right != NULL) {
+			prev = prev->right;
+		}
+		curr->key = prev->key;
+		curr->data = prev->data;
+
+		if (curr->left == NULL) {
+			if (curr->parent->left == curr) {
+				curr->parent->right = curr->right;
+			}
+			else {
+				curr->parent->left = curr->right;
+			}
+		}
+		else {
+			if (curr->parent->right == curr)
+				curr->parent->right = curr->left;
+			else curr->parent->left = curr->left;
+		}
+		restructure(curr->parent);
+		delete curr;
+	}
+	
 	
 	if (debug) {
 		printf("---------- After -----------------\n");
