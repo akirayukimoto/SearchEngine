@@ -287,14 +287,14 @@ AVLDictionary::removeElement(KeyType key)
 			parent->right = curr->right;
 			parent->right->height = curr->right->height;
 			delete curr;
-			curr = NULL;
+			//curr = NULL;
 			restructure(parent);
 		}
 		else {
 			parent->left = curr->left;
 			parent->left->height = curr->left->height;
 			delete curr;
-			curr = NULL;
+			//curr = NULL;
 			restructure(parent);
 		}
 	}
@@ -303,14 +303,14 @@ AVLDictionary::removeElement(KeyType key)
 			parent->right = curr->right;
 			parent->right->height = curr->right->height;
 			delete curr;
-			curr = NULL;
+			//curr = NULL;
 			restructure(parent);
 		}
 		else {
 			parent->left = curr->left;
 			parent->left->height = curr->left->height;
 			delete curr;
-			curr = NULL;
+			//curr = NULL;
 			restructure(parent);
 		}
 	}
