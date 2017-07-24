@@ -279,7 +279,7 @@ AVLDictionary::removeElement(KeyType key)
 		if (curr->left != NULL && curr->right != NULL)
 			curr->left = curr->right->parent;
 		else {
-			free((char *)root->key);
+			//free((char *)root->key);
 			delete root;
 			return true;
 		}
