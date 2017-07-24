@@ -279,8 +279,8 @@ AVLDictionary::removeElement(KeyType key)
 	if (curr->left == NULL && curr->right == NULL) {
 		if (curr == curr->parent->right) curr->parent->right = NULL;
 		else curr->parent->left = NULL;
-		if (curr->parent->left == NULL && curr->parent->right == NULL)
-			curr->parent->height = 1;
+		//if (curr->parent->left == NULL && curr->parent->right == NULL)
+		//	curr->parent->height = 1;
 		delete curr;
 		restructure(parent);
 	}	
@@ -300,49 +300,50 @@ AVLDictionary::removeElement(KeyType key)
 			restructure(parent);
 		}
 	}
-		else if (curr->right == NULL) {
-			if (curr == parent->right) {
-				parent->right = curr->left;
-				parent->right->height = curr->left->height;
-				delete curr;
-				curr = NULL;
-				restructure(parent);
+	else if (curr->right == NULL) {
+		if (curr == parent->right) {
+			parent->right = curr->left;
+			parent->right->height = curr->left->height;
+			delete curr;
+			curr = NULL;
+			restructure(parent);
+		}
+		else {
+			parent->left = NULL;
+			parent->left = curr->left;
+			parent->left->height = curr->left->height;
+			delete curr;
+			curr = NULL;
+			restructure(parent);
+		}
+	}
+	else {
+		AVLNode *prev = curr->left;
+		while (prev->right != NULL) {
+			prev = prev->right;
+		}
+		curr->key = prev->key;
+		curr->data = prev->data;
+
+		curr = prev;
+	
+		if (curr->left == NULL) {
+			if (curr->parent->right == curr) {
+				curr->parent->right = curr->right;
 			}
 			else {
-				parent->left = NULL;
-				parent->left = curr->left;
-				parent->left->height = curr->left->height;
-				delete curr;
-				curr = NULL;
-				restructure(parent);
+				curr->parent->left = curr->right;
 			}
 		}
 		else {
-			AVLNode *prev = curr->left;
-			while (prev->right != NULL) {
-				prev = prev->right;
-			}
-			curr->key = prev->key;
-			curr->data = prev->data;
-	
-			curr = prev;
-	
-			if (curr->left == NULL) {
-				if (curr->parent->right == curr) {
-					curr->parent->right = curr->right;
-				}
-				else {
-					curr->parent->left = curr->right;
-				}
-			}
-			else {
-				if (curr->parent->right == curr)
-					curr->parent->right = curr->left;
-				else curr->parent->left = curr->left;
-			}
-			restructure(curr->parent);
-			delete curr;
+			if (curr->parent->right == curr)
+				curr->parent->right = curr->left;
+			else curr->parent->left = curr->left;
 		}
+		restructure(curr->parent);
+		delete curr;
+	}
+	if (parent->left == NULL && parent->right == NULL) parent->height = 1;
 		
 	nElements--;
 	if (debug) {
