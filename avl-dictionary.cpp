@@ -276,82 +276,73 @@ AVLDictionary::removeElement(KeyType key)
 	AVLNode *parent = NULL;
 	if (curr != root) parent = curr->parent;
 	else curr->left = curr->right->parent;
-			if (curr->left == NULL && curr->right == NULL) {
-				if (curr == curr->parent->right) curr->parent->right = NULL;
-				else curr->parent->left = NULL;
-				if (curr->parent->left == NULL && curr->parent->right == NULL) 
-					curr->parent->height = 1;
+	if (curr->left == NULL && curr->right == NULL) {
+		if (curr == curr->parent->right) curr->parent->right = NULL;
+		else curr->parent->left = NULL;
+		delete curr;
+		restructure(parent);
+	}	
+	else if (curr->left == NULL) {
+		if (curr == parent->right) {
+		parent->right = curr->right;
+		parent->right->height = curr->right->height;
+		delete curr;
+		curr = NULL;
+		restructure(parent);
+		}
+		else {
+			parent->left = curr->right;
+			parent->left->height = curr->right->height;
+			delete curr;
+			curr = NULL;
+			restructure(parent);
+		}
+	}
+		else if (curr->right == NULL) {
+			if (curr == parent->right) {
+				parent->right = curr->left;
+				parent->right->height = curr->left->height;
 				delete curr;
+				curr = NULL;
 				restructure(parent);
 			}
-			else if (curr->left == NULL) {
-				if (curr == parent->right) {
-					parent->right = curr->right;
-					parent->right->height = curr->right->height;
-					delete curr;
-					curr = NULL;
-					restructure(parent);
-				}
-				else {
-					parent->left = curr->right;
-					parent->left->height = curr->right->height;
-					delete curr;
-					curr = NULL;
-					restructure(parent);
-				}
+			else {
+				parent->left = NULL;
+				parent->left = curr->left;
+				parent->left->height = curr->left->height;
+				delete curr;
+				curr = NULL;
+				restructure(parent);
 			}
-			else if (curr->right == NULL) {
-				if (curr == parent->right) {
-					parent->right = curr->left;
-					parent->right->height = curr->left->height;
-					delete curr;
-					curr = NULL;
-					restructure(parent);
+		}
+		else {
+			AVLNode *prev = curr->left;
+			while (prev->right != NULL) {
+				prev = prev->right;
+			}
+			curr->key = prev->key;
+			curr->data = prev->data;
+	
+			curr = prev;
+	
+			if (curr->left == NULL) {
+				if (curr->parent->right == curr) {
+					curr->parent->right = curr->right;
 				}
 				else {
-					parent->left = NULL;
-					parent->left = curr->left;
-					parent->left->height = curr->left->height;
-					delete curr;
-					curr = NULL;
-					restructure(parent);
+					curr->parent->left = curr->right;
 				}
 			}
 			else {
-				AVLNode *prev = curr->left;
-				while (prev->right != NULL) {
-					prev = prev->right;
-				}
-				curr->key = prev->key;
-				curr->data = prev->data;
-		
-				curr = prev;
-	
-				if (curr->left == NULL) {
-					if (curr->parent->right == curr) {
-						curr->parent->right = curr->right;
-					}
-					else {
-						curr->parent->left = curr->right;
-					}
-				}
-				else {
-					if (curr->parent->right == curr)
-						curr->parent->right = curr->left;
-					else curr->parent->left = curr->left;
-				}
-				restructure(curr->parent);
-				delete curr;
+				if (curr->parent->right == curr)
+					curr->parent->right = curr->left;
+				else curr->parent->left = curr->left;
 			}
+			restructure(curr->parent);
+			delete curr;
+		}
 		
-		//}
-		//else {
-		//	delete root;
-	//		root = NULL;
-	//	}
-	//}
-	
-	//nElements--;
+	nElements--;
 	if (debug) {
 		printf("---------- After -----------------\n");
 		printNode("", root, 0);
