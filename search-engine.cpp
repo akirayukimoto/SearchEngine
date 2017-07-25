@@ -52,7 +52,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	fclose(f1);
 
 	int numUrl = countLine / 3;
-	URLRecord **list = new URLRecord*[numUrl + 1];
+	URLRecord **list = new URLRecord*[numUrl + 2];
 	f1 = fopen("url.txt", "r");
 	for (int i = 0; i < numUrl; i++) {
 		list[i] = new URLRecord();
