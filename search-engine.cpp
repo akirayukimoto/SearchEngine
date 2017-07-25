@@ -68,29 +68,29 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		else {
 			element = strtok(temp, " ");
 			index = atoi(element);
-			//fprintf(note, "%d\n", index);
+			fprintf(note, "%d\n", index);
 			element = strtok(NULL, " ");
 			list[index]->_url = strdup(element);
-			//fprintf(note, "%s\n", list[index]->_url);
+			fprintf(note, "%s\n", list[index]->_url);
 			fgets(temp, 1000, f1);
 			element = strtok(temp, "\n");
 			list[index]->_description = strdup(element);
-			//fprintf(note, "%s\n", list[index]->_description);
+			fprintf(note, "%s\n", list[index]->_description);
 
 		}
 	}
-	//fprintf(note, "%s\n", "End of url.txt");
+	fprintf(note, "%s\n", "End of url.txt");
 	fclose(f1);
 	/**
 	f1 = fopen("url.txt", "r");
 	fprintf
 	*/
 	countLine = 0;
-	//fprintf(note, "%s\n", "word.txt");
+	fprintf(note, "%s\n", "word.txt");
 	FILE *f2 = fopen("word.txt", "r");
 	if (f2 == NULL) {
 		printf("File not found\n");
-		//fprintf(note, "%s\n", "File not found");
+		fprintf(note, "%s\n", "File not found");
 		exit(1);
 	}
 	else {
@@ -105,7 +105,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	char *word;
 	while (fgets(temp, 500, f2)) {
 		if (!strcmp(temp, "\r\n")) {
-			//fprintf(note, "\n"); 
+			fprintf(note, "\n"); 
 			continue;
 		}
 		else {
@@ -116,23 +116,23 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			element = strtok(NULL, "\n");
 			while (element != NULL) {
 				index = atoi(element);
-		//		fprintf(note, "%d\n", index);
+				fprintf(note, "%d\n", index);
 				URLRecordList *tmp = new URLRecordList();
 				if (head == NULL) {
 					head = tmp;
-		//			fprintf(note, "head is NULL\n");
+					fprintf(note, "head is NULL\n");
 				}
-		//		else {
-		//			fprintf(note, "head exists\n");
-		//		}
+				else {
+					fprintf(note, "head exists\n");
+				}
 				tmp->_urlRecord = list[index];
 				if (prev != NULL) {
 					prev->_next = tmp;
-		//			fprintf(note, "prev exists\n");
+					fprintf(note, "prev exists\n");
 				}
 				else {
-		//			fprintf(note, "prev is NULL\n");
-					continue;
+					fprintf(note, "prev is NULL\n");
+					//continue;
 				}
 				prev = tmp;
 				element = strtok(NULL, "\n");
@@ -141,8 +141,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 		//_wordToURLList->addRecord(word, head);
 	}
-	//fprintf(note, "%s\n", "END");
-	//fclose(note);
+	fprintf(note, "%s\n", "END");
+	fclose(note);
 
 
 }
