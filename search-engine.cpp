@@ -69,7 +69,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			list[index]->_url = strdup(element);
 			fprintf(note, "%s\n", list[index]->_url);
 			fgets(temp, 500, f1);
-			element = strtok(temp, " ");
+			element = strtok(temp, "\n");
 			list[index]->_description = strdup(element);
 			fprintf(note, "%s\n", list[index]->_description);
 
