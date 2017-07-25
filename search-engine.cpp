@@ -272,7 +272,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 }
 
 char *nextWord(char *p) {
-	char word[50];
+	char *word = new char[50];
+
 	int i = 0;
 	while (*p != '\0') {
 		if (*p != '+') {
