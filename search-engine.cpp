@@ -83,7 +83,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	fprintf(note, "%s\n", "word.txt");
 	FILE *f2 = fopen("word.txt", "r");
 	if (f2 == NULL) {
-		printf("File not found\m");
+		printf("File not found\n");
 		fprintf(note, "%s\n", "File not found");
 		exit(1);
 	}
