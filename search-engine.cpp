@@ -226,9 +226,6 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		while (e != NULL) {
 			int flag = 0;
 			for (int j = 0; j < count; j++) {
-				//if (e->_urlRecord != llist[j]) {
-				//	fprintf(note, "%s\n", "e->_urlRecord != llist[j]");
-				//}
 				if (e->_urlRecord == llist[j]) {
 					flag = 1;
 					//fprintf(note, "Flag is 1\n");
@@ -247,7 +244,6 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			int flag = 0;
 			while (curr != NULL) {
 				if (curr->_urlRecord == llist[i]) flag = 1;
-				//else fprintf(note, "llist[i] != e->_urlRecord\n");
 				curr = curr->_next;
 			}
 			if (flag == 0) llist[i] == NULL;
@@ -273,6 +269,31 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   fprintf(fout, "<INPUT TYPE=\"text\" NAME=\"word\" MAXLENGTH=\"80\"><P>\n");
   fprintf(fout, "</H2>\n");
   fprintf(fout, "</FORM>\n");
+}
+
+char *nextWord(char *p) {
+	char word[50];
+	int i = 0;
+	while (*p != '\0') {
+		if (*p != '+') {
+			word[i] = *p;
+			i++;
+		}
+		else {
+			if (i > 0) {
+				word[i] = '\0';
+				i = 0;
+				return word;
+			}
+		}
+		p++;
+	}
+	if (i >= 1) {
+		word[i] = '\0';
+		i = 0;
+		return word;
+	}
+	return NULL;
 }
 
 void
@@ -322,4 +343,4 @@ int main(int argc, char ** argv)
   httpd.run();
 
   return 0;
-}
+} 
