@@ -57,7 +57,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	for (int i = 0; i < numUrl; i++) {
 		list[i] = new URLRecord();
 	}
-	while (fgets(temp, 500, f1)) {
+	while (fgets(temp, 1000, f1)) {
 		if (!strcmp(temp, "\n")) {
 			fprintf(note, "\n");
 		}
@@ -68,7 +68,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			element = strtok(NULL, " ");
 			list[index]->_url = strdup(element);
 			fprintf(note, "%s\n", list[index]->_url);
-			fgets(temp, 500, f1);
+			fgets(temp, 1000, f1);
 			element = strtok(temp, "\n");
 			list[index]->_description = strdup(element);
 			fprintf(note, "%s\n", list[index]->_description);
