@@ -40,12 +40,14 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		fprintf(note, "%s\n", "File is not found");
 		exit(1);
 	}
-	while(1) {
-		c = fgetc(f1);
-		if (c == '\n') {
-			countLine++;
+	else {
+		while((c=fgetc(f1))!=-1) {
+		//c = fgetc(f1);
+			if (c == '\n') {
+				countLine++;
+			}
+		//if (c == EOF) break;
 		}
-		if (c == EOF) break;
 	}
 	fclose(f1);
 
