@@ -145,7 +145,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 void
 SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 {
-  FILE *note = fopen("open.txt", "a");
+  //FILE *note = fopen("open.txt", "a");
 
   if (strcmp(documentRequested, "/")==0) {
     // Send initial form
@@ -221,7 +221,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	int counter = 0;
 	URLRecord **llist = new URLRecord*[1000];
 	for (int i = 0; i < index; i++) {
-		fprintf(note, "%s\n", "find word");
+		//fprintf(note, "%s\n", "find word");
 		URLRecordList *e = (URLRecordList *)_wordToURLList->findRecord(wordList[i]);
 		while (e != NULL) {
 			int flag = 0;
@@ -256,15 +256,16 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
 
   for ( int i = 0; i < count; i++ ) {
-  	if (llist[i] == NULL) continue;
+  	if (llist[i] != NULL) {
     fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", counter+1, llist[i]->_url, llist[i]->_url);
     fprintf( fout, "<blockquote>%s<p></blockquote>\n", llist[i]->_description);
     	counter++;
+	}
   }
 
   // Add search form at the end
 
-  fclose(note);
+  //fclose(note);
   //
   fprintf(fout, "<HR><H2>\n");
   fprintf(fout, "<FORM ACTION=\"search\">\n");
