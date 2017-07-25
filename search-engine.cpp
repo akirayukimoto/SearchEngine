@@ -193,7 +193,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			strcat(result, wordList[i]);
 		}
 	}
-/**
+
 
   const int nurls=2;
 
@@ -208,7 +208,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
     "Computer Science Department. Purdue University.",
     "CS251 Data Structures"
   };
-*/
+
   fprintf( stderr, "Search for words: \"%s\"\n", result);
 
   fprintf( fout, "<TITLE>Search Results</TITLE>\r\n");
