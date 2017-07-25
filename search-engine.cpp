@@ -5,7 +5,7 @@
 
 //char *nextWord(char *p);
 
-//DictionaryType dictType;
+DictionaryType dictType;
 
 SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   MiniHTTPD(port)
@@ -26,6 +26,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	else exit(1);
   // Populate dictionary and sort it if necessary
 	fprintf(note, "%s\n", "Initializing variables");
+	dictType = dictionaryType;
 	int count = 0;
 	int countLine = 0;
 	char c;
@@ -276,7 +277,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   fprintf(fout, "</FORM>\n");
 }
 
-/**
+
 
 char *nextWord(char *p) {
 	char *word = new char[50];
@@ -303,7 +304,7 @@ char *nextWord(char *p) {
 	}
 	return NULL;
 }
-*/
+
 
 void
 printUsage()
