@@ -12,7 +12,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 {
   // Create dictionary of the indicated type
   //
-	//FILE *note = fopen("not.txt", "a");
+	FILE *note = fopen("not.txt", "a");
 
 
 	if (dictionaryType == ArrayDictionaryType)
@@ -25,7 +25,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		_wordToURLList = new AVLDictionary();
 	else exit(1);
   // Populate dictionary and sort it if necessary
-	//fprintf(note, "%s\n", "Initializing variables");
+	fprintf(note, "%s\n", "Initializing variables");
 	int count = 0;
 	int countLine = 0;
 	char c;
@@ -35,11 +35,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	int index;
 	char *temp = new char[500];
 	char *element;
-	//fprintf(note, "%s\n", "url.txt");
+	fprintf(note, "%s\n", "url.txt");
 	FILE *f1 = fopen("url.txt", "r");
 	if (f1 == NULL) {
 		printf("File is not found\n");
-		//fprintf(note, "%s\n", "File is not found");
+		fprintf(note, "%s\n", "File is not found");
 		exit(1);
 	}
 	else {
@@ -62,7 +62,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	while (fgets(temp, 1000, f1)) {
 		if (*temp == EOF) break;
 		if (!strcmp(temp, "\r\n")) {
-			//fprintf(note, "\n");
+			fprintf(note, "\n");
 			continue;
 		}
 		else {
