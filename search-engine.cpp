@@ -192,7 +192,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			strcat(result, wordList[i]);
 		}
 	}
-
+/**
 
   const int nurls=2;
 
@@ -207,12 +207,12 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
     "Computer Science Department. Purdue University.",
     "CS251 Data Structures"
   };
-
-  fprintf( stderr, "Search for words: \"%s\"\n", words);
+*/
+  fprintf( stderr, "Search for words: \"%s\"\n", result);
 
   fprintf( fout, "<TITLE>Search Results</TITLE>\r\n");
   fprintf( fout, "<H1> <Center><em>Boiler Search</em></H1>\n");
-  fprintf( fout, "<H2> Search Results for \"%s\"</center></H2>\n", words );
+  fprintf( fout, "<H2> Search Results for \"%s\"</center></H2>\n", result);
 
 	int counter = 0;
 	int count = 0;
@@ -252,9 +252,11 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	}
 
 
-  for ( int i = 0; i < nurls; i++ ) {
-    fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", i+1, urls[i], urls[i] );
-    fprintf( fout, "<blockquote>%s<p></blockquote>\n", description[i] );
+  for ( int i = 0; i < count; i++ ) {
+  	if (llist[i] == NULL) continue;
+    fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", counter+1, llist[i]->_url, llist[i]->_url);
+    fprintf( fout, "<blockquote>%s<p></blockquote>\n", llist[i]->_description);
+    	counter++;
   }
 
   // Add search form at the end
