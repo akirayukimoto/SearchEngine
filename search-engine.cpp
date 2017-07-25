@@ -214,8 +214,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   fprintf( fout, "<H1> <Center><em>Boiler Search</em></H1>\n");
   fprintf( fout, "<H2> Search Results for \"%s\"</center></H2>\n", result);
 
-	int counter = 0;
 	int count = 0;
+	int counter = 0;
 	URLRecord **llist = new URLRecord*[1000];
 	for (int i = 0; i < index; i++) {
 		fprintf(note, "%s\n", "find word");
