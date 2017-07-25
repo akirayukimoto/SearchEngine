@@ -186,7 +186,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	}
 	char *result = new char[100];
 	for (int i = 0; i < index; i++) {
-		if (i == 0) strcpy(result, wordList[i]);
+		if (i == 0) 
+			strcpy(result, wordList[i]);
 		else {
 			strcat(result, ",");
 			strcat(result, wordList[i]);
@@ -239,7 +240,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		}
 	}
 	for (int i = 0; i < count; i++) {
-		for (int j = 0; j < index; i++) {
+		for (int j = 0; j < index; j++) {
 			URLRecordList *curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
 			int flag = 0;
 			while (curr != NULL) {
