@@ -12,7 +12,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 {
   // Create dictionary of the indicated type
   //
-	FILE *note = fopen("not.txt", "a");
+	//FILE *note = fopen("not.txt", "a");
 
 
 	if (dictionaryType == ArrayDictionaryType)
@@ -25,7 +25,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		_wordToURLList = new AVLDictionary();
 	else exit(1);
   // Populate dictionary and sort it if necessary
-	fprintf(note, "%s\n", "Initializing variables");
+	//fprintf(note, "%s\n", "Initializing variables");
 	int count = 0;
 	int countLine = 0;
 	char c;
@@ -35,11 +35,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	int index;
 	char *temp = new char[500];
 	char *element;
-	fprintf(note, "%s\n", "url.txt");
+	//fprintf(note, "%s\n", "url.txt");
 	FILE *f1 = fopen("url.txt", "r");
 	if (f1 == NULL) {
 		printf("File is not found\n");
-		fprintf(note, "%s\n", "File is not found");
+		//fprintf(note, "%s\n", "File is not found");
 		exit(1);
 	}
 	else {
@@ -62,34 +62,35 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	while (fgets(temp, 1000, f1)) {
 		if (*temp == EOF) break;
 		if (!strcmp(temp, "\r\n")) {
-			fprintf(note, "\n");
+			//fprintf(note, "\n");
+			continue;
 		}
 		else {
 			element = strtok(temp, " ");
 			index = atoi(element);
-			fprintf(note, "%d\n", index);
+			//fprintf(note, "%d\n", index);
 			element = strtok(NULL, " ");
 			list[index]->_url = strdup(element);
-			fprintf(note, "%s\n", list[index]->_url);
+			//fprintf(note, "%s\n", list[index]->_url);
 			fgets(temp, 1000, f1);
 			element = strtok(temp, "\n");
 			list[index]->_description = strdup(element);
-			fprintf(note, "%s\n", list[index]->_description);
+			//fprintf(note, "%s\n", list[index]->_description);
 
 		}
 	}
-	fprintf(note, "%s\n", "End of url.txt");
+	//fprintf(note, "%s\n", "End of url.txt");
 	fclose(f1);
 	/**
 	f1 = fopen("url.txt", "r");
 	fprintf
 	*/
 	countLine = 0;
-	fprintf(note, "%s\n", "word.txt");
+	//fprintf(note, "%s\n", "word.txt");
 	FILE *f2 = fopen("word.txt", "r");
 	if (f2 == NULL) {
 		printf("File not found\n");
-		fprintf(note, "%s\n", "File not found");
+		//fprintf(note, "%s\n", "File not found");
 		exit(1);
 	}
 	else {
@@ -104,7 +105,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	char *word;
 	while (fgets(temp, 500, f2)) {
 		if (!strcmp(temp, "\r\n")) {
-			fprintf(note, "\n"); 
+			//fprintf(note, "\n"); 
+			continue;
 		}
 		else {
 			element = strtok(temp, " ");
@@ -126,10 +128,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				tmp->_urlRecord = list[index];
 				if (prev != NULL) {
 					prev->_next = tmp;
-					fprintf(note, "prev exists\n");
+		//			fprintf(note, "prev exists\n");
 				}
 				else {
-					fprintf(note, "prev is NULL\n");
+		//			fprintf(note, "prev is NULL\n");
+					continue;
 				}
 				prev = tmp;
 				element = strtok(NULL, "\n");
@@ -138,8 +141,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 		//_wordToURLList->addRecord(word, head);
 	}
-	fprintf(note, "%s\n", "END");
-	fclose(note);
+	//fprintf(note, "%s\n", "END");
+	//fclose(note);
 
 
 }
