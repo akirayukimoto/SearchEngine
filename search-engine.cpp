@@ -3,7 +3,9 @@
 #include "search-engine.h"
 //#include "webcrawl.h"
 
-DictionaryType dictType;
+char *nextWord(char *p);
+
+//DictionaryType dictType;
 
 SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   MiniHTTPD(port)
