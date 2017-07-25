@@ -9,6 +9,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   MiniHTTPD(port)
 {
   // Create dictionary of the indicated type
+  //
+	FILE *note = fopen("not.txt", "a");
+
+
 	if (dictionaryType == ArrayDictionaryType)
 		_wordToURLList = new ArrayDictionary();
 	else if (dictionaryType == BinarySearchDictionaryType)
@@ -19,19 +23,21 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		_wordToURLList = new AVLDictionary();
 	else _wordToURLList = NULL;
   // Populate dictionary and sort it if necessary
-	
+	fprintf(note, "%s\n", "Initializing variables");
 	int count = 0;
 	int countLine = 0;
 	char c;
 
 	char *url;
 	char *description;
-	int i;
+	int index;
 	char *temp = new char[500];
 	char *element;
+	fprintf(note, "%s\n", "url.txt");
 	FILE *f1 = fopen("url.txt", "r");
 	if (f1 == NULL) {
 		printf("File is not found\n");
+		fprintf(note, "%s\n", "File is not found");
 		exit(1);
 	}
 	while(1) {
@@ -42,8 +48,91 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		if (c == EOF) break;
 	}
 	fclose(f1);
+
 	int numUrl = countLine / 3;
-	
+	URLRecord **list = new URLRecord*[numUrl];
+	f1 = fopen("url.txt", "r");
+	for (int i = 0; i < numUrl; i++) {
+		list[i] = new URLRecord();
+	}
+	while (fgets(temp, 500, f1)) {
+		if (!strcmp(temp, "\n")) {
+			fprintf(note, "\n");
+		}
+		else {
+			element = strtok(temp, " ");
+			index = atoi(element);
+			fprintf(note, "%d\n", index);
+			element = strtok(NULL, " ");
+			list[index]->_url = strdup(element);
+			fprintf(note, "%s\n", list[index]->_url);
+			fgets(temp, 500, f1);
+			element = strtok(temp, " ");
+			list[index]->_description = strdup(element);
+			fprintf(note, "%s\n", list[index]->_description);
+
+		}
+	}
+	fprintf(note, "%s\n", "End of url.txt");
+	fclose(f1);
+	/**
+	f1 = fopen("url.txt", "r");
+	fprintf
+	*/
+	countLine = 0;
+	fprintf(note, "%s\n", "word.txt");
+	FILE *f2 = fopen("word.txt", "r");
+	if (f2 == NULL) {
+		printf("File not found\m");
+		fprintf(note, "%s\n", "File not found");
+		exit(1);
+	}
+	else {
+		while ((c=fgetc(f2))!=-1) {
+			if (c == '\n') countLine++;
+		}
+	}
+	fclose(f2);
+	f2 = fopen("word.text", "r");
+
+	char *word;
+	while (fgets(temp, 500, f2)) {
+		if (!strcmp(temp, "\n")) {
+			fprintf(note, "\n"); 
+		}
+		else {
+			element = strtok(temp, " ");
+			word = strdup(element);
+			URLRecordList *head = NULL;
+			URLRecordList *prev = NULL;
+			element = strtok(NULL, "\n");
+			while (element != NULL) {
+				index = atoi(element);
+				fprintf(note, "%d\n", index);
+				URLRecordList *tmp = new URLRecordList();
+				if (head == NULL) {
+					head = tmp;
+					fprintf(note, "head is NULL\n");
+				}
+				else {
+					fprintf(note, "head exists\n");
+				}
+				tmp->_urlRecord = list[index];
+				if (prev != NULL) {
+					prev->_next = tmp;
+					fprintf(note, "prev exists\n");
+				}
+				else {
+					fprintf(note, "prev is NULL\n");
+				}
+				prev = tmp;
+				element = strtok(NULL, "\n");
+			}
+		}
+	}
+	fprintf(note, "%s\n", "END");
+	fclose(note);
+
 
 }
 
