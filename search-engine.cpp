@@ -276,6 +276,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   fprintf(fout, "</FORM>\n");
 }
 
+/**
+
 char *nextWord(char *p) {
 	char *word = new char[50];
 
@@ -301,6 +303,7 @@ char *nextWord(char *p) {
 	}
 	return NULL;
 }
+*/
 
 void
 printUsage()
