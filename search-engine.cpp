@@ -96,7 +96,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 	}
 	fclose(f2);
-	f2 = fopen("word.text", "r");
+	f2 = fopen("word.txt", "r");
+	if (f2 == NULL) exit(1);
 
 	char *word;
 	while (fgets(temp, 500, f2)) {
