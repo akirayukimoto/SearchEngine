@@ -58,6 +58,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		list[i] = new URLRecord();
 	}
 	while (fgets(temp, 1000, f1)) {
+		if (*temp == EOF) break;
 		if (!strcmp(temp, "\r\n")) {
 			fprintf(note, "\n");
 		}
