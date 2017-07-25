@@ -99,7 +99,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 	char *word;
 	while (fgets(temp, 500, f2)) {
-		if (!strcmp(temp, "\n")) {
+		if (!strcmp(temp, "\r\n")) {
 			fprintf(note, "\n"); 
 		}
 		else {
