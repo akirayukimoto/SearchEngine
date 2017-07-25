@@ -3,7 +3,7 @@
 #include "search-engine.h"
 //#include "webcrawl.h"
 
-char *nextWord(char *p);
+//char *nextWord(char *p);
 
 //DictionaryType dictType;
 
