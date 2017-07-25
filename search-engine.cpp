@@ -21,7 +21,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		_wordToURLList = new HashDictionary();
 	else if (dictionaryType == AVLDictionaryType)
 		_wordToURLList = new AVLDictionary();
-	else _wordToURLList = NULL;
+	else exit(1);
   // Populate dictionary and sort it if necessary
 	fprintf(note, "%s\n", "Initializing variables");
 	int count = 0;
