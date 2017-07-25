@@ -108,15 +108,15 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			element = strtok(NULL, "\n");
 			while (element != NULL) {
 				index = atoi(element);
-				fprintf(note, "%d\n", index);
+		//		fprintf(note, "%d\n", index);
 				URLRecordList *tmp = new URLRecordList();
 				if (head == NULL) {
 					head = tmp;
-					fprintf(note, "head is NULL\n");
+		//			fprintf(note, "head is NULL\n");
 				}
-				else {
-					fprintf(note, "head exists\n");
-				}
+		//		else {
+		//			fprintf(note, "head exists\n");
+		//		}
 				tmp->_urlRecord = list[index];
 				if (prev != NULL) {
 					prev->_next = tmp;
