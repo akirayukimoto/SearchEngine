@@ -185,8 +185,10 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   // in HTML. Make the output look nicer.
 
   // Here the URLs printed are hardwired
-  
-	char *temp = strdup(documentRequested + 13);
+ 
+ 	if (strlen(documentRequested) < 13) return;
+	char *temp = new char[strlen(documentRequested) + 1];
+	strcpy(temp, documentRequested);
 	printf("%s\n", temp);
 	char *p = temp;
 	
