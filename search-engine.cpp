@@ -194,7 +194,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		}
 	}
 
-
+/**
   const int nurls=2;
 
   const char * words = "data structures";
@@ -208,6 +208,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
     "Computer Science Department. Purdue University.",
     "CS251 Data Structures"
   };
+  */
 
   fprintf( stderr, "Search for words: \"%s\"\n", result);
 
@@ -224,12 +225,12 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		while (e != NULL) {
 			int flag = 0;
 			for (int j = 0; j < count; j++) {
-				if (e->_urlRecord != llist[j]) {
-					fprintf(note, "%s\n", "e->_urlRecord != llist[j]");
-				}
-				else {
+				//if (e->_urlRecord != llist[j]) {
+				//	fprintf(note, "%s\n", "e->_urlRecord != llist[j]");
+				//}
+				if (e->_urlRecord == llist[j]) {
 					flag = 1;
-					fprintf(note, "Flag is 1\n");
+					//fprintf(note, "Flag is 1\n");
 				}
 			}
 			if (flag == 0) {
@@ -245,7 +246,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			int flag = 0;
 			while (curr != NULL) {
 				if (curr->_urlRecord == llist[i]) flag = 1;
-				else fprintf(note, "llist[i] != e->_urlRecord\n");
+				//else fprintf(note, "llist[i] != e->_urlRecord\n");
 				curr = curr->_next;
 			}
 			if (flag == 0) llist[i] == NULL;
