@@ -180,11 +180,12 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	char *token = strtok(temp, "+");
 	while (token != NULL) {
 		wordList[index] = strdup(token);
-		fprintf(note, "%s\n", wordList[index]);
+		//fprintf(note, "%s\n", wordList[index]);
 		index++;
 		token = strtok(NULL, "+");
 	}
 	char *result = new char[100];
+	int i = 0;
 	for (int i = 0; i < index; i++) {
 		if (i == 0) 
 			strcpy(result, wordList[i]);
