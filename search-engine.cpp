@@ -128,7 +128,9 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				prev = tmp;
 				element = strtok(NULL, "\n");
 			}
+			_wordToURLList->addRecord(word, head);
 		}
+		//_wordToURLList->addRecord(word, head);
 	}
 	fprintf(note, "%s\n", "END");
 	fclose(note);
@@ -139,8 +141,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 void
 SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 {
+  FILE *note = fopen("open.txt", "a");
+
   if (strcmp(documentRequested, "/")==0) {
     // Send initial form
+    //FILE *note = fopen("note.txt", "a");
     fprintf(fout, "<TITLE>CS251 Search</TITLE>\r\n");
     fprintf(fout, "<CENTER><H1><em>Boiler Search</em></H1>\n");
     fprintf(fout, "<H2>\n");
@@ -162,6 +167,29 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
   // Here the URLs printed are hardwired
   
+	char *temp = strdup(documentRequested + 13);
+	printf("%s\n", temp);
+	char *p = temp;
+	
+	char **wordList = new char*[50];
+	int index = 0;
+	char *token = strtok(temp, "+");
+	while (token != NULL) {
+		wordList[index] = strdup(token);
+		fprintf(note, "%s\n", wordList[index]);
+		index++;
+		token = strtok(NULL, "+");
+	}
+	char *result = new char[100];
+	for (int i = 0; i < index; i++) {
+		if (i == 0) strcpy(result, wordList[i]);
+		else {
+			strcat(result, ",");
+			strcat(result, wordList[i]);
+		}
+	}
+
+
   const int nurls=2;
 
   const char * words = "data structures";
@@ -182,12 +210,41 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   fprintf( fout, "<H1> <Center><em>Boiler Search</em></H1>\n");
   fprintf( fout, "<H2> Search Results for \"%s\"</center></H2>\n", words );
 
+	int counter = 0;
+	int count = 0;
+	URLRecord **llist = new URLRecord*[1000];
+	for (int i = 0; i < index; i++) {
+		fprintf(note, "%s\n", "find word");
+		URLRecordList *e = (URLRecordList *)_wordToURLList->findRecord(wordList[i]);
+		while (e != NULL) {
+			int flag = 0;
+			for (int j = 0; j < count; j++) {
+				if (e->_urlRecord != llist[j]) {
+					fprintf(note, "%s\n", e->_urlRecord != llist[j]);
+				}
+				else {
+					flag = 1;
+					fprintf(note, "Flag is 1\n");
+				}
+			}
+			if (flag == 0) {
+				llist[count] = e->_urlRecord;
+				count++;
+			}
+			e = e->_next;
+		}
+	}
+
+
   for ( int i = 0; i < nurls; i++ ) {
     fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", i+1, urls[i], urls[i] );
     fprintf( fout, "<blockquote>%s<p></blockquote>\n", description[i] );
   }
 
   // Add search form at the end
+
+  fclose(note);
+  //
   fprintf(fout, "<HR><H2>\n");
   fprintf(fout, "<FORM ACTION=\"search\">\n");
   fprintf(fout, "Search:\n");
