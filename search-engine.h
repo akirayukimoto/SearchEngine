@@ -30,6 +30,7 @@ class SearchEngine : public MiniHTTPD {
   SearchEngine( int port, DictionaryType dictionaryType);
 
   // Called when a request arrives
+  bool match( char *&com);
   void dispatch( FILE * out, const char * requestLine );
 
 };
