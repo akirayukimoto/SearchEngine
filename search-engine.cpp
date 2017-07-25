@@ -220,7 +220,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			int flag = 0;
 			for (int j = 0; j < count; j++) {
 				if (e->_urlRecord != llist[j]) {
-					fprintf(note, "%s\n", e->_urlRecord != llist[j]);
+					fprintf(note, "%s\n", "e->_urlRecord != llist[j]");
 				}
 				else {
 					flag = 1;
@@ -232,6 +232,18 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				count++;
 			}
 			e = e->_next;
+		}
+	}
+	for (int i = 0; i < count; i++) {
+		for (int j = 0; j < index; i++) {
+			URLRecordList *curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
+			int flag = 0;
+			while (curr != NULL) {
+				if (curr->_urlRecord == llist[i]) flag = 1;
+				else fprintf(note, "llist[i] != e->_urlRecord\n");
+				curr = curr->_next;
+			}
+			if (flag == 0) llist[i] == NULL;
 		}
 	}
 
