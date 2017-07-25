@@ -10,6 +10,7 @@
 #include "bsearch-dictionary.h"
 #include "hash-dictionary.h"
 #include "avl-dictionary.h"
+#include "webcrawl.h"
 
 // Types of dictionaries used
 enum DictionaryType {
