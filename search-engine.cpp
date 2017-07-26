@@ -294,7 +294,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		while (e != NULL) {
 			int flag = 0;
 			for (int j = 0; j < count; j++) {
-				if (e->_urlRecord == llist[j]) {
+				if (llist[i] == e->_urlRecord) {
 					flag = 1;
 					break;
 					//fprintf(note, "Flag is 1\n");
