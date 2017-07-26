@@ -250,8 +250,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	printf("%s\n", temp);
 	//char *p = temp;
 	
-	char **wordList = new char*[50];
-	for (int i = 0; i < 50; i++) 
+	char **wordList = new char*[100];
+	for (int i = 0; i < 100; i++) 
 		wordList[i] = NULL;
 
 	int index = 0;
@@ -314,7 +314,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			for (int j = 0; j < count; j++) {
 				if (e->_urlRecord == llist[j]) {
 					flag = 1;
-					break;
+					//break;
 					//fprintf(note, "Flag is 1\n");
 				}
 			}
