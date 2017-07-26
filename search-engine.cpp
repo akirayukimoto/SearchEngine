@@ -98,7 +98,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		
 			*i = '\0';
 			uIndex = atoi(ind);
-			while (*str == ' ') str++;
+			while (*str == ' ') 
+				str++;
 			list[uIndex]->_url = strdup(str);
 			alter = 1;
 			continue;
@@ -119,7 +120,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	fclose(f1);
 	
 	f1 = fopen("url.txt", "r");
-	
+	/**
 	countLine = 0;
 	fprintf(note, "%s\n", "word.txt");
 	FILE *f2 = fopen("word.txt", "r");
@@ -134,7 +135,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 	//}
 	fclose(f2);
-	f2 = fopen("word.txt", "r");
+	*/
+	FILE *f2 = fopen("word.txt", "r");
 	if (f2 == NULL) exit(1);
 
 	char *word = (char *)malloc(100 * sizeof(char));
@@ -148,7 +150,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	int len;
 
 	while (fgets(temp, 500, f2)) {
-		/**
+		
 		if (!strcmp(temp, "\r\n")) {
 			fprintf(note, "\n"); 
 			continue;
@@ -185,7 +187,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			_wordToURLList->addRecord(word, head);
 		}
 		//_wordToURLList->addRecord(word, head);
-		*/
+		
+		/**
 		tLine = strdup(temp);
 		while ((word = nextWord(tLine)) != NULL) {
 			if (flag == 0) {
@@ -212,6 +215,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 		_wordToURLList->addRecord(mWord, (URLRecordList *)head);
 		flag = 0;
+		*/
 	}
 	fclose(f2);
 	
