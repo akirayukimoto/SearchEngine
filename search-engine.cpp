@@ -56,9 +56,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 //	fclose(f1);
 
 	//int numUrl = (countLine / 3) + 2;
-	URLRecord **list = new URLRecord*[1000];
-	int i;
-	for (i = 0; i < 1000; i++) {
+	URLRecord **list = new URLRecord*[1024];
+	for (int i = 0; i < 1024; i++) {
 		list[i] = new URLRecord();
 	}
 
