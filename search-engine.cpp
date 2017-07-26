@@ -159,7 +159,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	//FILE *
 	f1 = fopen("word.txt", "r");
 	if (f1 == NULL) exit(1);
-	delete temp;
+	//delete temp;
 	temp = new char[1000];
 
 //	char *word = (char *)malloc(100 * sizeof(char));
