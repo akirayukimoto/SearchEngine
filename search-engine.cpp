@@ -157,7 +157,7 @@ SearchEngine::match(char *&com) {
 	return false;
 }
 
-char *nextWord(char *p) {
+char *nextWord(char *&p) {
 	char *word = (char *)malloc(sizeof(char) * 100);
 
 	int i = 0;
