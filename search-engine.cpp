@@ -116,7 +116,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		*/
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
-			//char *token = strtok(temp, "\n");
+			token = strtok(temp, "\n");
 			int index = atoi(token);
 			
 			token = strtok(NULL, "\n");			
@@ -136,7 +136,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 	}
 	delete temp;
-	fprintf(note, "%s\n", "End of url.txt");
+	//fprintf(note, "%s\n", "End of url.txt");
 	fclose(f1);
 	
 	f1 = fopen("url.txt", "r");
