@@ -183,8 +183,8 @@ SearchEngine::nextWord(char *&p) {
 	int i = 0;
 	while (*p != '\0') {
 		//if (*p != '\n' && *p != ' ' && *p != '+') {
-			word[i] = *p;
-			i++;
+		//	word[i] = *p;
+		//	i++;
 		//}
 		//else {
 		if (*p == '\n' || *p == ' ' || *p == '+') {
