@@ -255,13 +255,13 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		wordList[i] = NULL;
 
 	int index = 0;
-	char *tst = (char *)malloc(50 * sizeof(char));
-	if (match(temp)) {
-		while ((tst = nextWord(temp)) != NULL) {
-			wordList[index++] = strdup(tst);
-			printf("%d %s\n", index, tst);
-		}
-	}
+//	char *tst = (char *)malloc(50 * sizeof(char));
+//	if (match(temp)) {
+//		while ((tst = nextWord(temp)) != NULL) {
+//			wordList[index++] = strdup(tst);
+//			printf("%d %s\n", index, tst);
+//		}
+//	}
 	char *token = strtok(temp, "+");
 	while (token != NULL) {
 		wordList[index] = strdup(token);
@@ -269,16 +269,16 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		index++;
 		token = strtok(NULL, "+");
 	}
-	//char *result = new char[1000];
-	//strcpy(result, "");
-	//for (int i = 0; i < index; i++) {
+	char *result = new char[1000];
+	strcpy(result, "");
+	for (int i = 0; i < index; i++) {
 		//strcat(result, ",");
-	//	strcat(result, wordList[i]);
-	//	if (i != index - 1) strcat(result, " ");
+		strcat(result, wordList[i]);
+		if (i != index - 1) strcat(result, " ");
 		
-	//}
+	}
 
-	printf("Words to search for: %s\n", token);
+	printf("Words to search for: %s\n", result);
 
 /**
   const int nurls=2;
@@ -296,11 +296,11 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   };
   */
 
-  fprintf( stderr, "Search for words: \"%s\"\n", token);
+  fprintf( stderr, "Search for words: \"%s\"\n", result);
 
   fprintf( fout, "<TITLE>Search Results</TITLE>\r\n");
   fprintf( fout, "<H1> <Center><em>Boiler Search</em></H1>\n");
-  fprintf( fout, "<H2> Search Results for \"%s\"</center></H2>\n", token);
+  fprintf( fout, "<H2> Search Results for \"%s\"</center></H2>\n", result);
 
 	int count = 0;
 	int counter = 0;
