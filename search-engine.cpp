@@ -247,7 +247,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	for (int i = 0; i < index; i++) {
 		//strcat(result, ",");
 		strcat(result, wordList[i]);
-		strcat(result, " ");
+		if (i != index - 1) strcat(result, " ");
 		
 	}
 
