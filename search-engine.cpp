@@ -34,36 +34,36 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	//char *url;
 	//char *description;
 	//int index;
-	char *temp = new char[500];
+	char *temp = new char[1000];
 	//char *element;
 	//fprintf(note, "%s\n", "url.txt");
 	FILE *f1 = fopen("url.txt", "r");
-	if (f1 == NULL) {
+//	if (f1 == NULL) {
 	//	printf("File is not found\n");
 	//	fprintf(note, "%s\n", "File is not found");
-		exit(1);
-	}
+//		exit(1);
+//	}
 	
 	//else {
-		while((c=fgetc(f1))!=-1) {
+//		while((c=fgetc(f1))!=-1) {
 		//c = fgetc(f1);
-			if (c == '\n') {
-				countLine++;
-			}
+//			if (c == '\n') {
+//				countLine++;
+//			}
 		//if (c == EOF) break;
-		}
+//		}
 	//}
-	fclose(f1);
+//	fclose(f1);
 
 	//int numUrl = (countLine / 3) + 2;
 	URLRecord **list = new URLRecord*[1000];
-	f1 = fopen("url.txt", "r");
-	for (int i = 0; i < 1000; i++) {
+	int i;
+	for (i = 0; i < 1000; i++) {
 		list[i] = new URLRecord();
 	}
 
-	int alter = 0;
-	int uIndex;
+	//int alter = 0;
+	//int uIndex;
 	while (fgets(temp, 1000, f1)) {
 		//if (*temp == EOF) break;
 		/**
