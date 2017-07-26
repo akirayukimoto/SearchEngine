@@ -232,19 +232,20 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 			while (token != NULL) {
 				int index = atoi(token);
-				if (list[index]->_url == NULL) continue;
+				if (list[index]->_url != NULL) {
 
-				URLRecordList *curr = new URLRecordList();
-				if (head == NULL) head = curr;
+					URLRecordList *curr = new URLRecordList();
+					if (head == NULL) head = curr;
 
-				curr->_urlRecord = list[index];
-				curr->_next = NULL;
+					curr->_urlRecord = list[index];
+					curr->_next = NULL;
 
-				if (prev = NULL) prev->_next = curr;
+					if (prev != NULL) prev->_next = curr;
 
-				prev = curr;
-
-				token = strtok(NULL, "\n");
+					prev = curr;
+	
+					token = strtok(NULL, "\n");
+				}
 			}
 			_wordToURLList->addRecord(word, (URLRecordList *)head);
 			delete word;
