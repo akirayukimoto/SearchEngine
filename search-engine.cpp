@@ -31,13 +31,15 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	//int countLine = 0;
 	//char c;
 
-	char *temp = new char[1000];
+	//char *temp = new char[1000];
 	//char *element;
 	//fprintf(note, "%s\n", "url.txt");
 	FILE *f1 = fopen("url.txt", "r");
 	if (f1 == NULL) {
 		exit(1);
 	}
+
+	char *temp = new char[1000];
 
 	URLRecord **list = new URLRecord*[1024];
 	for (int i = 0; i < 1024; i++) {
@@ -300,13 +302,13 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		int j;
 		for (j = 0; j < index; j++) {
 			URLRecordList *curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
-			//fprintf(note, "%s\n", curr->_urlRecord->_url);
-			//fprintf(note, "%s\n", curr->_urlRecord->_description);
+			fprintf(note, "%s\n", curr->_urlRecord->_url);
+			fprintf(note, "%s\n", curr->_urlRecord->_description);
 			int flag = 0;
 			while (curr != NULL) {
-				if (!strcmp(curr->_urlRecord->_url, llist[i]->_url)) {
-		                        fprintf(note, "%s\n", curr->_urlRecord->_url);
-				        fprintf(note, "%s\n", curr->_urlRecord->_description);
+				if (curr->_urlRecord->_url == llist[i]->_url) {
+		              //          fprintf(note, "%s\n", curr->_urlRecord->_url);
+				//        fprintf(note, "%s\n", curr->_urlRecord->_description);
 
 					flag = 1;
 				}
