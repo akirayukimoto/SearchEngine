@@ -283,13 +283,19 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			}
 			if (flag == 0) {
 				llist[count] = e->_urlRecord;
-				fprintf(note, "%s\n", llist[count]->_url);
-				fprintf(note, "%s\n", llist[count]->_description);
+				//fprintf(note, "%s\n", llist[count]->_url);
+				//fprintf(note, "%s\n", llist[count]->_description);
 				count++;
 			}
 			e = e->_next;
 		}
 	}
+
+	for (int i = 0; i < count; i++) {
+                                 fprintf(note, "%s\n", llist[i]->_url);
+                                 fprintf(note, "%s\n", llist[i]->_description);
+	}
+
 	for (int i = 0; i < count; i++) {
 		int j;
 		for (j = 0; j < index; j++) {
