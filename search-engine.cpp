@@ -27,9 +27,9 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   // Populate dictionary and sort it if necessary
 	fprintf(note, "%s\n", "Initializing variables");
 	dictType = dictionaryType;
-	int count = 0;
-	int countLine = 0;
-	char c;
+	//int count = 0;
+	//int countLine = 0;
+	//char c;
 
 	char *temp = new char[1000];
 	//char *element;
