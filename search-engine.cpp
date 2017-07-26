@@ -158,7 +158,7 @@ SearchEngine::match(char *&com) {
 }
 
 char *nextWord(char *p) {
-	char *word = new char[50];
+	char *word = (char *)malloc(sizeof(char) * 100);
 
 	int i = 0;
 	while (*p != '\0') {
@@ -217,10 +217,11 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   // Here the URLs printed are hardwired
  
  	if (strlen(documentRequested) < 13) return;
+
 	char *temp = new char[strlen(documentRequested) + 1];
 	strcpy(temp, documentRequested);
 	printf("%s\n", temp);
-	char *p = temp;
+	//char *p = temp;
 	
 	char **wordList = new char*[50];
 	for (int i = 0; i < 50; i++) wordList[i] = NULL;
