@@ -262,23 +262,23 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			printf("%d %s\n", index, tst);
 		}
 	}
-//	char *token = strtok(temp, "+");
-//	while (token != NULL) {
-//		wordList[index] = strdup(token);
+	char *token = strtok(temp, "+");
+	while (token != NULL) {
+		wordList[index] = strdup(token);
 //		//fprintf(note, "%s\n", wordList[index]);
-//		index++;
-//		token = strtok(NULL, "+");
-//	}
-	char *result = new char[1000];
-	strcpy(result, "");
-	for (int i = 0; i < index; i++) {
-		//strcat(result, ",");
-		strcat(result, wordList[i]);
-		if (i != index - 1) strcat(result, " ");
-		
+		index++;
+		token = strtok(NULL, "+");
 	}
+	//char *result = new char[1000];
+	//strcpy(result, "");
+	//for (int i = 0; i < index; i++) {
+		//strcat(result, ",");
+	//	strcat(result, wordList[i]);
+	//	if (i != index - 1) strcat(result, " ");
+		
+	//}
 
-	printf("Words to search for: %s\n", result);
+	printf("Words to search for: %s\n", token);
 
 /**
   const int nurls=2;
@@ -296,11 +296,11 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   };
   */
 
-  fprintf( stderr, "Search for words: \"%s\"\n", result);
+  fprintf( stderr, "Search for words: \"%s\"\n", token);
 
   fprintf( fout, "<TITLE>Search Results</TITLE>\r\n");
   fprintf( fout, "<H1> <Center><em>Boiler Search</em></H1>\n");
-  fprintf( fout, "<H2> Search Results for \"%s\"</center></H2>\n", result);
+  fprintf( fout, "<H2> Search Results for \"%s\"</center></H2>\n", token);
 
 	int count = 0;
 	int counter = 0;
@@ -314,7 +314,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			for (int j = 0; j < count; j++) {
 				if (e->_urlRecord == llist[j]) {
 					flag = 1;
-					//break;
+					break;
 					//fprintf(note, "Flag is 1\n");
 				}
 			}
