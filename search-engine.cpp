@@ -228,20 +228,20 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		wordList[i] = NULL;
 
 	int index = 0;
-	char *tst = (char *)malloc(50 * sizeof(char));
-	if (match(temp)) {
-		while ((tst = nextWord(temp)) != NULL) {
-			wordList[index++] = strdup(tst);
-			printf("%d %s\n", index, tst);
-		}
+//	char *tst = (char *)malloc(50 * sizeof(char));
+//	if (match(temp)) {
+//		while ((tst = nextWord(temp)) != NULL) {
+//			wordList[index++] = strdup(tst);
+//			printf("%d %s\n", index, tst);
+//		}
+//	}
+	char *token = strtok(temp, "+");
+	while (token != NULL) {
+		wordList[index] = strdup(token);
+		//fprintf(note, "%s\n", wordList[index]);
+		index++;
+		token = strtok(NULL, "+");
 	}
-	//char *token = strtok(temp, "+");
-	//while (token != NULL) {
-	//	wordList[index] = strdup(token);
-	//	//fprintf(note, "%s\n", wordList[index]);
-	//	index++;
-	//	token = strtok(NULL, "+");
-	//}
 	char *result = new char[1000];
 	strcpy(result, "");
 	for (int i = 0; i < index; i++) {
