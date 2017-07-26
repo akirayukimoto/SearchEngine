@@ -281,24 +281,27 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		}
 	}
 	for (int i = 0; i < count; i++) {
-		for (int j = 0; j < index; j++) {
+		int j;
+		for (j = 0; j < index; j++) {
 			URLRecordList *curr;
 			curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
 			int flag = 0;
 			while (curr != NULL) {
-				if (curr->_urlRecord == llist[i]) 
+				if (curr->_urlRecord == llist[i]) {
 					flag = 1;
+				}
 				curr = curr->_next;
 			}
-			if (flag == 0) llist[i] == NULL;
+			if (flag == 0) 
+				llist[i] == NULL;
 		}
 	}
 
 
   for ( int i = 0; i < count; i++ ) {
   	if (llist[i] == NULL) continue;
-    fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", counter + 1, llist[i]->_url, llist[i]->_url);
-    fprintf( fout, "<blockquote>%s<p></blockquote>\n", llist[i]->_description);
+    	fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", counter + 1, llist[i]->_url, llist[i]->_url);
+    	fprintf( fout, "<blockquote>%s<p></blockquote>\n", llist[i]->_description);
     	counter++;
 	
   }
