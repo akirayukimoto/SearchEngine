@@ -169,7 +169,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 bool
 SearchEngine::match(char *&com) {
-	if (!strncmp(com, "/search?word=", 13)) {
+	if (strncmp(com, "/search?word=", 13) == 0) {
 		com += 13;
 		return true;
 	}
