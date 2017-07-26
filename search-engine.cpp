@@ -125,17 +125,27 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		fprintf(note, "%s\n", "File not found");
 		exit(1);
 	}
-	else {
+	//else {
 		while ((c=fgetc(f2))!=-1) {
 			if (c == '\n') countLine++;
 		}
-	}
+	//}
 	fclose(f2);
 	f2 = fopen("word.txt", "r");
 	if (f2 == NULL) exit(1);
 
-	char *word;
+	char *word = (char *)malloc(100 * sizeof(char));
+	char *tLine = (char *)malloc(500 * sizeof(char));
+	char *mWord = (char *)malloc(100 * sizeof(char));
+	int flag = 0;
+	int wIndex;
+
+	URLRecordList *head;
+	URLRecordList *prev = new URLRecordList();
+	int len;
+
 	while (fgets(temp, 500, f2)) {
+		/**
 		if (!strcmp(temp, "\r\n")) {
 			fprintf(note, "\n"); 
 			continue;
@@ -172,10 +182,38 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			_wordToURLList->addRecord(word, head);
 		}
 		//_wordToURLList->addRecord(word, head);
+		*/
+		len = strlen(temp);
+		while ((word = nextWord(tLine)) != NULL) {
+			if (flag == 0) {
+				head = NULL;
+				prev = NULL;
+				strcpy(mWord, word);
+				printf("word: %s\n", mWord);
+				flag = 1;
+				continue;
+			}
+			wIndex = atoi(word);
+			if (list[wIndex]->_url == NULL) continue;
+
+			URLRecordList *curr = new URLRecordList();
+			if (head == NULL) head = curr;
+
+			curr->_urlRecord = list[wIndex];
+			curr->_next = NULL;
+
+			if (prev != NULL) prev ->_next = curr;
+
+			prev = curr;
+			printf("%d\n", wIndex);
+		}
+		_wordToURLList->addRecord(mWord, (URLRecordList *)head);
+		flag = 0;
 	}
+	fclose(f2);
 	
-	fprintf(note, "%s\n", "END");
-	fclose(note);
+	//fprintf(note, "%s\n", "END");
+	//fclose(note);
 
 
 }
@@ -189,7 +227,8 @@ SearchEngine::match(char *&com) {
 	return false;
 }
 
-char *nextWord(char *&p) {
+char *
+SearchEngine::nextWord(char *&p) {
 	char *word = (char *)malloc(sizeof(char) * 100);
 
 	int i = 0;

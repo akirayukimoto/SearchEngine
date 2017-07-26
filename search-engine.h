@@ -31,6 +31,7 @@ class SearchEngine : public MiniHTTPD {
 
   // Called when a request arrives
   bool match( char *&com);
+  char *nextWord( char *&p);
   void dispatch( FILE * out, const char * requestLine );
 
 };
