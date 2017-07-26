@@ -246,7 +246,7 @@ AVLDictionary::findRecord( KeyType key)
         // Add your implementation here
 	AVLNode *curr = root;
 	while (curr != NULL) {
-		if (!strcmp(curr->key, key)) return (DataType)curr->data;
+		if (strcmp(curr->key, key) == 0) return (DataType)curr->data;
 		else if (strcmp(curr->key, key) > 0) curr = curr->left;
 		else curr = curr->right;
 	}
