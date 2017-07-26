@@ -23,7 +23,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		_wordToURLList = new HashDictionary();
 	else if (dictionaryType == AVLDictionaryType)
 		_wordToURLList = new AVLDictionary();
-	else exit(1);
+	else NULL;
   // Populate dictionary and sort it if necessary
 	fprintf(note, "%s\n", "Initializing variables");
 	dictType = dictionaryType;
@@ -38,11 +38,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	//char *element;
 	//fprintf(note, "%s\n", "url.txt");
 	FILE *f1 = fopen("url.txt", "r");
-//	if (f1 == NULL) {
+	if (f1 == NULL) {
 	//	printf("File is not found\n");
 	//	fprintf(note, "%s\n", "File is not found");
-//		exit(1);
-//	}
+		exit(1);
+	}
 	
 	//else {
 //		while((c=fgetc(f1))!=-1) {
