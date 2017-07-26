@@ -196,14 +196,14 @@ SearchEngine::nextWord(char *&p) {
 				word[i] = '\0';
 				return word;
 			}
-			p++;
+			//p++;
 		}
 		else {
 			word[i] = *p;
 			i++;
 		}
 		
-		//p++;
+		p++;
 	}
 	if (i > 0) {
 		word[i] = '\0';
