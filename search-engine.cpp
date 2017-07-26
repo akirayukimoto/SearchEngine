@@ -112,7 +112,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				
 			}
 			_wordToURLList->addRecord(word, (URLRecordList *)head);
-			fprintf(note, "%s\n", word);
+			//fprintf(note, "%s\n", word);
 			delete word;
 			delete token;
 		}
@@ -176,7 +176,7 @@ SearchEngine::nextWord(char *&p) {
 void
 SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 {
-  //FILE *note = fopen("open.txt", "a");
+  FILE *note = fopen("open.txt", "a");
 
   if (strcmp(documentRequested, "/")==0) {
     // Send initial form
@@ -227,6 +227,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 //		//fprintf(note, "%s\n", wordList[index]);
 		wordList[index] = new char[50];
 		strcpy(wordList[index], token);
+		fprintf(note, "%s\n", wordList[index]);
 		index++;
 		token = strtok(NULL, "+");
 	}
@@ -315,7 +316,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
   // Add search form at the end
 
-  //fclose(note);
+  fclose(note);
   //
   fprintf(fout, "<HR><H2>\n");
   fprintf(fout, "<FORM ACTION=\"search\">\n");
