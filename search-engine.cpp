@@ -115,17 +115,18 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 		*/
 		if (strcmp(temp, "\n") != 0) {
-			//char *token = new char[1000];
-			char *token = strtok(temp, "\n");
+			char *token = new char[1000];
+			//char *token = strtok(temp, "\n");
 			int index = atoi(token);
-			token = strtok(NULL, "\n");
+			
+			token = strtok(NULL, "\n");			
 			char *link = new char[1000];
 			strcpy(link, token);
 
 			fgets(temp, 1000, f1);
 
 			char *desc = new char[1000];
-			token = strtok(temp, "\n");
+			//token = strtok(temp, "\n");
 			strcpy(desc, token);
 
 			list[index]->_url = link;
