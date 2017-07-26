@@ -146,12 +146,20 @@ SearchEngine::nextWord(char *&p) {
 
 	int i = 0;
 	while (*p != '\0') {
+//<<<<<<< HEAD
 		//if (*p != '\n' && *p != ' ' && *p != '+') {
 		//	word[i] = *p;
 		//	i++;
 		//}
 		//else {
 		if (*p == '\n' || *p == ' ' || *p == '+') {
+//=======
+		//if (*p != '+') {
+			word[i] = *p;
+			i++;
+		}
+		else {
+//>>>>>>> parent of 5b91bfa... Commit search engine
 			if (i == 0) {
 				p++;
 				continue;
@@ -162,10 +170,10 @@ SearchEngine::nextWord(char *&p) {
 			}
 			//p++;
 		}
-		else {
-			word[i] = *p;
-			i++;
-		}
+		//else {
+		//	word[i] = *p;
+		//	i++;
+		//}
 		
 		p++;
 	}
@@ -281,7 +289,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		while (e != NULL) {
 			int flag = 0;
 			for (int j = 0; j < count; j++) {
-				if (llist[j] == e->_urlRecord) {
+				if (llist[i] == e->_urlRecord) {
 					flag = 1;
 					break;
 					//fprintf(note, "Flag is 1\n");
