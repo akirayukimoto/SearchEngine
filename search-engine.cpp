@@ -167,15 +167,18 @@ char *nextWord(char *p) {
 			i++;
 		}
 		else {
-			if (i > 0) {
+			if (i == 0) {
+				p++;
+				continue;
+			}
+			else {
 				word[i] = '\0';
-				i = 0;
 				return word;
 			}
 		}
 		p++;
 	}
-	if (i >= 1) {
+	if (i > 0) {
 		word[i] = '\0';
 		i = 0;
 		return word;
