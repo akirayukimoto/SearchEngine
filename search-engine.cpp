@@ -48,21 +48,21 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	while (fgets(temp, 1000, f1)) {
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
-			token = strtok(temp, " ");
+			token = strtok(temp, " \n");
 			int index = atoi(token);
 			
-			token = strtok(NULL, " ");			
+			token = strtok(NULL, " \n");			
 			char *link = new char[1000];
 			strcpy(link, token);
 
 			fgets(temp, 1000, f1);
 
 			char *desc = new char[1000];
-			//token = strtok(temp, "\n");
+			token = strtok(temp, "\n");
 			strcpy(desc, token);
 
-			list[index]->_url = strdup(link);
-			list[index]->_description = strdup(desc);
+			list[index]->_url = link;
+			list[index]->_description = desc;
 	//		fprintf(note, "%d\n", index);
 	//		fprintf(note, "%s\n", list[index]->_url);
 	//		fprintf(note, "%s\n", list[index]->_description);
@@ -84,36 +84,37 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 	while (fgets(temp, 1000, f1)) {
 		if (strcmp(temp, "\n") != 0) {
-			char *token = new char[1000];
+			char *token = new char[512];
 			token = strtok(temp, " \n");
-			char *word = new char[1000];
+
+			char *word = new char[512];
 			strcpy(word, token);
 
-			URLRecordList *head = NULL;
-			URLRecordList *prev = new URLRecordList();
+			URLRecordList *head;
+			head = NULL;
 
-			token = strtok(NULL, " ");
+			URLRecordList *prev;
+			prev = NULL;
+
+			token = strtok(NULL, " \n");
 
 			while (token != NULL) {
-				int index = atoi(token);
-				if (list[index]->_url == NULL) continue;
+				int position = atoi(token);
+				if (list[position]->_url == NULL)
+					continue;
 
-					URLRecordList *curr = new URLRecordList();
-					//if (head == NULL) 
-					//	head = curr;
+				URLRecordList *entry = new URLRecordList();
+				if (head == NULL)
+					head = entry;
 
-					curr->_urlRecord = list[index];
-					curr->_next = NULL;
+				entry->_urlRecord = list[position];
+				entry->_next = NULL;
 
-					if (head == NULL) head = curr;
+				if (prev != NULL)
+					prev->_next = entry;
+				prev = entry;
 
-					if (prev != NULL) 
-						prev->_next = curr;
-
-					prev = curr;
-	
-					token = strtok(NULL, " ");
-				
+				token = strtok(NULL, " \n");
 			}
 			_wordToURLList->addRecord(word, (URLRecordList *)head);
 			//fprintf(note, "%s\n", word);
