@@ -48,17 +48,17 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	while (fgets(temp, 1000, f1)) {
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
-			token = strtok(temp, " \n");
+			token = strtok(temp, " ");
 			int index = atoi(token);
 			
-			token = strtok(NULL, " \n");			
+			token = strtok(NULL, " ");			
 			char *link = new char[1000];
 			strcpy(link, token);
 
 			fgets(temp, 1000, f1);
 
 			char *desc = new char[1000];
-			token = strtok(temp, "\n");
+			//token = strtok(temp, "\n");
 			strcpy(desc, token);
 
 			list[index]->_url = strdup(link);
@@ -90,27 +90,29 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			strcpy(word, token);
 
 			URLRecordList *head = NULL;
-			URLRecordList *prev = NULL;
+			URLRecordList *prev = new URLRecordList();
 
-			token = strtok(NULL, " \n");
+			token = strtok(NULL, " ");
 
 			while (token != NULL) {
 				int index = atoi(token);
 				if (list[index]->_url == NULL) continue;
 
 					URLRecordList *curr = new URLRecordList();
-					if (head == NULL) 
-						head = curr;
+					//if (head == NULL) 
+					//	head = curr;
 
 					curr->_urlRecord = list[index];
 					curr->_next = NULL;
+
+					if (head == NULL) head = curr;
 
 					if (prev != NULL) 
 						prev->_next = curr;
 
 					prev = curr;
 	
-					token = strtok(NULL, " \n");
+					token = strtok(NULL, " ");
 				
 			}
 			_wordToURLList->addRecord(word, (URLRecordList *)head);
@@ -299,8 +301,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	}
 */
 	for (int i = 0; i < count; i++) {
-		int j;
-		for (j = 0; j < index; j++) {
+		
+		for (int j = 0; j < index; j++) {
 			URLRecordList *curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
 			fprintf(note, "%s\n", curr->_urlRecord->_url);
 			fprintf(note, "%s\n", curr->_urlRecord->_description);
