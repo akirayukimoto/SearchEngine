@@ -85,7 +85,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 		}
 		*/
-		
+		/**
 		if (alter == 0) {
 			char *str = temp;
 			char *ind = (char *)malloc(5 * sizeof(char));
@@ -113,9 +113,28 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			alter = 0;
 			continue;
 		}
+		*/
+		if (strcmp(temp, "\n") != 0) {
+			char *token = new char[500];
+			token = strtok(temp, "\n");
+			int index = atoi(token);
+			token = strtok(NULL, "\n");
+			char *link = new char[500];
+			strcpy(link, token);
+
+			fgets(temp, 512, f1);
+
+			char *desc = new char[500];
+			token = strtok(temp, "\n");
+			strcpy(desc, token);
+
+			list[index]->_url = url;
+			list[index]->_description = desc;
+		}
 		
 
 	}
+	delete temp;
 	fprintf(note, "%s\n", "End of url.txt");
 	fclose(f1);
 	
