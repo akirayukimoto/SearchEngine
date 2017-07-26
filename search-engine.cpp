@@ -141,12 +141,14 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				if (list[index]->_url == NULL) continue;
 
 					URLRecordList *curr = new URLRecordList();
-					if (head == NULL) head = curr;
+					if (head == NULL) 
+						head = curr;
 
 					curr->_urlRecord = list[index];
 					curr->_next = NULL;
 
-					if (prev != NULL) prev->_next = curr;
+					if (prev != NULL) 
+						prev->_next = curr;
 
 					prev = curr;
 	
@@ -245,8 +247,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
  
  	if (strlen(documentRequested) < 13) return;
 
-	char *temp = new char[strlen(documentRequested) + 1];
-	strcpy(temp, documentRequested);
+	char *temp = new char[strlen(documentRequested) + 13];
+	strcpy(temp, documentRequested + 13);
 	printf("%s\n", temp);
 	//char *p = temp;
 	
@@ -331,7 +333,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
 			int flag = 0;
 			while (curr != NULL) {
-				if (curr->_urlRecord == llist[i]) flag = 1;
+				if (curr->_urlRecord == llist[i]) 
+					flag = 1;
 				curr = curr->_next;
 			}
 			if (flag == 0) llist[i] == NULL;
