@@ -66,10 +66,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	while (fgets(temp, 1000, f1)) {
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
-			token = strtok(temp, " ");
+			token = strtok(temp, " \n");
 			int index = atoi(token);
 			
-			token = strtok(NULL, "  ");			
+			token = strtok(NULL, " \n");			
 			char *link = new char[1000];
 			strcpy(link, token);
 
