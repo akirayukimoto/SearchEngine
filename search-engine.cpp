@@ -31,38 +31,18 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	int countLine = 0;
 	char c;
 
-	//char *url;
-	//char *description;
-	//int index;
 	char *temp = new char[1000];
 	//char *element;
 	//fprintf(note, "%s\n", "url.txt");
 	FILE *f1 = fopen("url.txt", "r");
 	if (f1 == NULL) {
-	//	printf("File is not found\n");
-	//	fprintf(note, "%s\n", "File is not found");
 		exit(1);
 	}
-	
-	//else {
-//		while((c=fgetc(f1))!=-1) {
-		//c = fgetc(f1);
-//			if (c == '\n') {
-//				countLine++;
-//			}
-		//if (c == EOF) break;
-//		}
-	//}
-//	fclose(f1);
 
-	//int numUrl = (countLine / 3) + 2;
 	URLRecord **list = new URLRecord*[1024];
 	for (int i = 0; i < 1024; i++) {
 		list[i] = new URLRecord();
 	}
-
-	//int alter = 0;
-	//int uIndex;
 	while (fgets(temp, 1000, f1)) {
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
@@ -107,11 +87,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	fclose(f2);
 	*/
 	//FILE *
-	//f1 = fopen("word.txt", "r");
+	f1 = fopen("word.txt", "r");
 	//if (f1 == NULL) exit(1);
 	//delete temp;
-	FILE *f2 = fopen("word.txt", "r");
-	if (f2 == NULL) exit(1);
+	//FILE *f2 = fopen("word.txt", "r");
+	if (f1 == NULL) exit(1);
 	//delete temp;
 	temp = new char[1000];
 
@@ -125,10 +105,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 //	URLRecordList *prev = new URLRecordList();
 //	int len;
 
-	while (fgets(temp, 1000, f2)) {
+	while (fgets(temp, 1000, f1)) {
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
-			token = strtok(temp, " ");
+			token = strtok(temp, " \n");
 			char *word = new char[1000];
 			strcpy(word, token);
 			URLRecordList *head = NULL;
@@ -161,7 +141,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 	}
 	delete temp;
-	fclose(f2);
+	fclose(f1);
 	
 	//fprintf(note, "%s\n", "END");
 	//fclose(note);
