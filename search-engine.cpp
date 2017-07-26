@@ -247,7 +247,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	for (int i = 0; i < index; i++) {
 		//strcat(result, ",");
 		strcat(result, wordList[i]);
-		strcat(result, ", ");
+		strcat(result, " ");
 		
 	}
 
@@ -280,12 +280,14 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	URLRecord **llist = new URLRecord*[1000];
 	for (int i = 0; i < index; i++) {
 		//fprintf(note, "%s\n", "find word");
-		URLRecordList *e = (URLRecordList *)_wordToURLList->findRecord(wordList[i]);
+		URLRecordList *e;
+		e = (URLRecordList *)_wordToURLList->findRecord(wordList[i]);
 		while (e != NULL) {
 			int flag = 0;
 			for (int j = 0; j < count; j++) {
 				if (e->_urlRecord == llist[j]) {
 					flag = 1;
+					break;
 					//fprintf(note, "Flag is 1\n");
 				}
 			}
@@ -298,7 +300,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	}
 	for (int i = 0; i < count; i++) {
 		for (int j = 0; j < index; j++) {
-			URLRecordList *curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
+			URLRecordList *curr;
+			curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
 			int flag = 0;
 			while (curr != NULL) {
 				if (curr->_urlRecord == llist[i]) flag = 1;
