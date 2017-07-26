@@ -118,7 +118,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			token = strtok(temp, "\r\n");
 			int index = atoi(token);
 			
-			token = strtok(NULL, "\r\n");			
+			token = strtok(NULL, " \r\n");			
 			char *link = new char[1000];
 			strcpy(link, token);
 
