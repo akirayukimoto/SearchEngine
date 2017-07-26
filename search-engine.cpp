@@ -31,16 +31,16 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	int countLine = 0;
 	char c;
 
-	char *url;
-	char *description;
-	int index;
+	//char *url;
+	//char *description;
+	//int index;
 	char *temp = new char[500];
-	char *element;
-	fprintf(note, "%s\n", "url.txt");
+	//char *element;
+	//fprintf(note, "%s\n", "url.txt");
 	FILE *f1 = fopen("url.txt", "r");
 	if (f1 == NULL) {
-		printf("File is not found\n");
-		fprintf(note, "%s\n", "File is not found");
+	//	printf("File is not found\n");
+	//	fprintf(note, "%s\n", "File is not found");
 		exit(1);
 	}
 	
@@ -128,7 +128,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			token = strtok(temp, "\n");
 			strcpy(desc, token);
 
-			list[index]->_url = url;
+			list[index]->_url = link;
 			list[index]->_description = desc;
 		}
 		
