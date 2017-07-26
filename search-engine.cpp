@@ -61,10 +61,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 			list[index]->_url = strdup(link);
 			list[index]->_description = strdup(desc);
-			fprintf(note, "%d\n", index);
-			fprintf(note, "%s\n", list[index]->_url);
-			fprintf(note, "%s\n", list[index]->_description);
-			fprintf(note, "\n");
+	//		fprintf(note, "%d\n", index);
+	//		fprintf(note, "%s\n", list[index]->_url);
+	//		fprintf(note, "%s\n", list[index]->_description);
+	//		fprintf(note, "\n");
 		}
 		
 
@@ -112,6 +112,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				
 			}
 			_wordToURLList->addRecord(word, (URLRecordList *)head);
+			fprintf(note, "%s\n", word);
 			delete word;
 			delete token;
 		}
