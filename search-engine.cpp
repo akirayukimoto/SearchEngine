@@ -64,55 +64,6 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	//int alter = 0;
 	//int uIndex;
 	while (fgets(temp, 1000, f1)) {
-		//if (*temp == EOF) break;
-		/**
-		if (!strcmp(temp, "\r\n")) {
-			fprintf(note, "\n");
-			continue;
-		}
-		else {
-			element = strtok(temp, " ");
-			index = atoi(element);
-			fprintf(note, "%d\n", index);
-			element = strtok(NULL, " ");
-			list[index]->_url = strdup(element);
-			fprintf(note, "%s\n", list[index]->_url);
-			fgets(temp, 1000, f1);
-			element = strtok(temp, "\n");
-			list[index]->_description = strdup(element);
-			fprintf(note, "%s\n", list[index]->_description);
-
-		}
-		*/
-		/**
-		if (alter == 0) {
-			char *str = temp;
-			char *ind = (char *)malloc(5 * sizeof(char));
-			char *i = ind;
-			while (*str != ' ') {
-				*i = *str;
-				i++;
-				str++;
-			}
-		
-			*i = '\0';
-			uIndex = atoi(ind);
-			while (*str == ' ') 
-				str++;
-			list[uIndex]->_url = strdup(str);
-			alter = 1;
-			continue;
-		}
-		else if (alter == 1) {
-			list[uIndex]->_description = strdup(temp);
-			alter = 2;
-			continue;
-		}
-		else {
-			alter = 0;
-			continue;
-		}
-		*/
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
 			token = strtok(temp, " \n");
@@ -172,73 +123,6 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 //	int len;
 
 	while (fgets(temp, 1000, f1)) {
-		/**
-		if (!strcmp(temp, "\r\n")) {
-			fprintf(note, "\n"); 
-			continue;
-		}
-		else {
-			element = strtok(temp, " ");
-			word = strdup(element);
-			URLRecordList *head = NULL;
-			URLRecordList *prev = NULL;
-			element = strtok(NULL, "\n");
-			while (element != NULL) {
-				index = atoi(element);
-				fprintf(note, "%d\n", index);
-				URLRecordList *tmp = new URLRecordList();
-				if (head == NULL) {
-					head = tmp;
-					fprintf(note, "head is NULL\n");
-				}
-				else {
-					fprintf(note, "head exists\n");
-				}
-				tmp->_urlRecord = list[index];
-				if (prev != NULL) {
-					prev->_next = tmp;
-					fprintf(note, "prev exists\n");
-				}
-				else {
-					fprintf(note, "prev is NULL\n");
-					//continue;
-				}
-				prev = tmp;
-				element = strtok(NULL, "\n");
-			}
-			
-			_wordToURLList->addRecord(word, head);
-		}
-		//_wordToURLList->addRecord(word, head);
-		*/
-		/**
-		tLine = strdup(temp);
-		while ((word = nextWord(tLine)) != NULL) {
-			if (flag == 0) {
-				head = NULL;
-				prev = NULL;
-				strcpy(mWord, word);
-				printf("word: %s\n", mWord);
-				flag = 1;
-				continue;
-			}
-			wIndex = atoi(word);
-			if (list[wIndex]->_url == NULL) continue;
-
-			URLRecordList *curr = new URLRecordList();
-			if (head == NULL) head = curr;
-
-			curr->_urlRecord = list[wIndex];
-			curr->_next = NULL;
-
-			if (prev != NULL) prev ->_next = curr;
-
-			prev = curr;
-			printf("%d\n", wIndex);
-		}
-		_wordToURLList->addRecord(mWord, (URLRecordList *)head);
-		flag = 0;
-		*/
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
 			token = strtok(temp, "\n");
