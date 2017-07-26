@@ -136,8 +136,9 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	//}
 	fclose(f2);
 	*/
-	FILE *f2 = fopen("word.txt", "r");
-	if (f2 == NULL) exit(1);
+	//FILE *
+	f1 = fopen("word.txt", "r");
+	if (f1 == NULL) exit(1);
 	delete temp;
 	temp = new char[500];
 
@@ -151,7 +152,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 //	URLRecordList *prev = new URLRecordList();
 //	int len;
 
-	while (fgets(temp, 500, f2)) {
+	while (fgets(temp, 500, f1)) {
 		/**
 		if (!strcmp(temp, "\r\n")) {
 			fprintf(note, "\n"); 
@@ -251,7 +252,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 	}
 	delete temp;
-	fclose(f2);
+	fclose(f1);
 	
 	//fprintf(note, "%s\n", "END");
 	//fclose(note);
