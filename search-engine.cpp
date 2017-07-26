@@ -115,16 +115,16 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 		*/
 		if (strcmp(temp, "\n") != 0) {
-			char *token = new char[500];
+			char *token = new char[1000];
 			token = strtok(temp, "\n");
 			int index = atoi(token);
 			token = strtok(NULL, "\n");
-			char *link = new char[500];
+			char *link = new char[1000];
 			strcpy(link, token);
 
-			fgets(temp, 512, f1);
+			fgets(temp, 1000, f1);
 
-			char *desc = new char[500];
+			char *desc = new char[1000];
 			token = strtok(temp, "\n");
 			strcpy(desc, token);
 
@@ -159,7 +159,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	f1 = fopen("word.txt", "r");
 	if (f1 == NULL) exit(1);
 	delete temp;
-	temp = new char[500];
+	temp = new char[1000];
 
 //	char *word = (char *)malloc(100 * sizeof(char));
 //	char *tLine = (char *)malloc(500 * sizeof(char));
@@ -171,7 +171,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 //	URLRecordList *prev = new URLRecordList();
 //	int len;
 
-	while (fgets(temp, 500, f1)) {
+	while (fgets(temp, 1000, f1)) {
 		/**
 		if (!strcmp(temp, "\r\n")) {
 			fprintf(note, "\n"); 
@@ -240,9 +240,9 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		flag = 0;
 		*/
 		if (strcmp(temp, "\n") != 0) {
-			char *token = new char[500];
+			char *token = new char[1000];
 			token = strtok(temp, "\n");
-			char *word = new char[500];
+			char *word = new char[1000];
 			strcpy(word, token);
 			URLRecordList *head = NULL;
 			URLRecordList *prev = NULL;
