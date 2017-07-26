@@ -219,7 +219,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		wordList[i] = NULL;
 
 	int index = 0;
-	char *tst = (char *)malloc(50 * sizeof(char));
+//	char *tst = (char *)malloc(50 * sizeof(char));
 //	if (match(temp)) {
 //		while ((tst = nextWord(temp)) != NULL) {
 //			wordList[index] = strdup(tst);
