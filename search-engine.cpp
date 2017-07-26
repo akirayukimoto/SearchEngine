@@ -182,7 +182,7 @@ SearchEngine::nextWord(char *&p) {
 
 	int i = 0;
 	while (*p != '\0') {
-		if (*p != '+') {
+		if (*p != ' ' && *p != '+') {
 			word[i] = *p;
 			i++;
 		}
