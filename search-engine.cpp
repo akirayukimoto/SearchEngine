@@ -62,11 +62,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		list[i] = new URLRecord();
 	}
 
-	int alter = 0;
-	int uIndex;
+	///int alter = 0;
+	//int uIndex;
 	while (fgets(temp, 1000, f1)) {
 		//if (*temp == EOF) break;
-		/**
+		
 		if (!strcmp(temp, "\r\n")) {
 			fprintf(note, "\n");
 			continue;
@@ -83,7 +83,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			list[index]->_description = strdup(element);
 			fprintf(note, "%s\n", list[index]->_description);
 
-		}*/
+		}
+		/**
 		if (alter == 0) {
 			char *str = temp;
 			char *ind = (char *)malloc(5 * sizeof(char));
@@ -110,6 +111,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			alter = 0;
 			continue;
 		}
+		*/
 
 	}
 	fprintf(note, "%s\n", "End of url.txt");
