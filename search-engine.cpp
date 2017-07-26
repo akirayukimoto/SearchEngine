@@ -207,7 +207,7 @@ SearchEngine::nextWord(char *&p) {
 	}
 	if (i > 0) {
 		word[i] = '\0';
-		i = 0;
+		//i = 0;
 		return word;
 	}
 	return NULL;
