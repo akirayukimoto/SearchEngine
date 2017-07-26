@@ -139,7 +139,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	//fprintf(note, "%s\n", "End of url.txt");
 	fclose(f1);
 	
-	f1 = fopen("url.txt", "r");
+	//f1 = fopen("url.txt", "r");
 	/**
 	countLine = 0;
 	fprintf(note, "%s\n", "word.txt");
