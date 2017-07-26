@@ -185,7 +185,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 		//_wordToURLList->addRecord(word, head);
 		*/
-		len = strlen(temp);
+		tLine = strdup(temp);
 		while ((word = nextWord(tLine)) != NULL) {
 			if (flag == 0) {
 				head = NULL;
