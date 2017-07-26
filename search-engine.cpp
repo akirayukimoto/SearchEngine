@@ -182,11 +182,12 @@ SearchEngine::nextWord(char *&p) {
 
 	int i = 0;
 	while (*p != '\0') {
-		if (*p != '\n' && *p != ' ' && *p != '+') {
+		//if (*p != '\n' && *p != ' ' && *p != '+') {
 			word[i] = *p;
 			i++;
-		}
-		else {
+		//}
+		//else {
+		if (*p == '\n' || *p == ' ' || *p == '+') {
 			if (i == 0) {
 				p++;
 				continue;
@@ -195,8 +196,14 @@ SearchEngine::nextWord(char *&p) {
 				word[i] = '\0';
 				return word;
 			}
+			p++;
 		}
-		p++;
+		else {
+			word[i] = *p;
+			i++;
+		}
+		
+		//p++;
 	}
 	if (i > 0) {
 		word[i] = '\0';
