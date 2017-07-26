@@ -157,6 +157,33 @@ SearchEngine::match(char *&com) {
 	return false;
 }
 
+char *nextWord(char *p) {
+	char *word = new char[50];
+
+	int i = 0;
+	while (*p != '\0') {
+		if (*p != '+') {
+			word[i] = *p;
+			i++;
+		}
+		else {
+			if (i > 0) {
+				word[i] = '\0';
+				i = 0;
+				return word;
+			}
+		}
+		p++;
+	}
+	if (i >= 1) {
+		word[i] = '\0';
+		i = 0;
+		return word;
+	}
+	return NULL;
+}
+
+
 void
 SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 {
@@ -193,24 +220,33 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	char *p = temp;
 	
 	char **wordList = new char*[50];
+	for (int i = 0; i < 50; i++) wordList[i] = NULL;
+
 	int index = 0;
-	char *token = strtok(temp, "+");
-	while (token != NULL) {
-		wordList[index] = strdup(token);
-		//fprintf(note, "%s\n", wordList[index]);
-		index++;
-		token = strtok(NULL, "+");
-	}
-	char *result = new char[100];
-	int i = 0;
-	for (int i = 0; i < index; i++) {
-		if (i == 0) 
-			strcpy(result, wordList[i]);
-		else {
-			strcat(result, ",");
-			strcat(result, wordList[i]);
+	char *tst = (char *)malloc(50 * sizeof(char));
+	if (match(temp)) {
+		while ((tst = nextWord(temp)) != NULL) {
+			wordList[index] = strdup(tst);
+			printf("%d %s\n", index, tst);
 		}
 	}
+	//char *token = strtok(temp, "+");
+	//while (token != NULL) {
+	//	wordList[index] = strdup(token);
+	//	//fprintf(note, "%s\n", wordList[index]);
+	//	index++;
+	//	token = strtok(NULL, "+");
+	//}
+	char *result = new char[1000];
+	strcpy(result, "");
+	for (int i = 0; i < index; i++) {
+		//strcat(result, ",");
+		strcat(result, wordList[i]);
+		strcat(result, ", ");
+		
+	}
+
+	printf("Words to search for: %s\n", result);
 
 /**
   const int nurls=2;
@@ -269,11 +305,11 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
 
   for ( int i = 0; i < count; i++ ) {
-  	if (llist[i] != NULL) {
+  	if (llist[i] == NULL) continue;
     fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", counter + 1, llist[i]->_url, llist[i]->_url);
     fprintf( fout, "<blockquote>%s<p></blockquote>\n", llist[i]->_description);
     	counter++;
-	}
+	
   }
 
   // Add search form at the end
@@ -290,31 +326,6 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
 
 
-char *nextWord(char *p) {
-	char *word = new char[50];
-
-	int i = 0;
-	while (*p != '\0') {
-		if (*p != '+') {
-			word[i] = *p;
-			i++;
-		}
-		else {
-			if (i > 0) {
-				word[i] = '\0';
-				i = 0;
-				return word;
-			}
-		}
-		p++;
-	}
-	if (i >= 1) {
-		word[i] = '\0';
-		i = 0;
-		return word;
-	}
-	return NULL;
-}
 
 
 void
