@@ -115,7 +115,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		*/
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
-			token = strtok(temp, " \n");
+			token = strtok(temp, "\r\n");
 			int index = atoi(token);
 			
 			token = strtok(NULL, " \r\n");			
