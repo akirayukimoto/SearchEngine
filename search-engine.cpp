@@ -126,7 +126,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			fgets(temp, 1000, f1);
 
 			char *desc = new char[1000];
-			//token = strtok(temp, "\n");
+			token = strtok(temp, "\n");
 			strcpy(desc, token);
 
 			list[index]->_url = link;
