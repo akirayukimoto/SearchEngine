@@ -12,7 +12,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 {
   // Create dictionary of the indicated type
   //
-	//FILE *note = fopen("not.txt", "a");
+	FILE *note = fopen("not.txt", "a");
 
 
 	if (dictionaryType == ArrayDictionaryType)
@@ -61,6 +61,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 			list[index]->_url = strdup(link);
 			list[index]->_description = strdup(desc);
+			fprintf(note, "%d\n", index);
+			fprintf(note, "%s\n", list[index]->_url);
+			fprintf(note, "%s\n", list[index]->_description);
+			fprintf(note, "\n");
 		}
 		
 
@@ -82,6 +86,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			token = strtok(temp, " \n");
 			char *word = new char[1000];
 			strcpy(word, token);
+
 			URLRecordList *head = NULL;
 			URLRecordList *prev = NULL;
 
@@ -115,7 +120,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	fclose(f1);
 	
 	//fprintf(note, "%s\n", "END");
-	//fclose(note);
+	fclose(note);
 
 
 }
@@ -229,7 +234,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	for (int i = 0; i < index; i++) {
 		//strcat(result, ",");
 		strcat(result, wordList[i]);
-		if (i != index - 1) strcat(result, " ");
+		if (i != index - 1) 
+			strcat(result, " ");
 		
 	}
 
