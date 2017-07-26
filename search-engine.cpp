@@ -323,9 +323,10 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
 
   for ( int i = 0; i < count; i++ ) {
-  	if (llist[i] == NULL) continue;
+  	if (llist[i] != NULL) {
     fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", counter + 1, llist[i]->_url, llist[i]->_url);
     fprintf( fout, "<blockquote>%s<p></blockquote>\n", llist[i]->_description);
+    }
     	counter++;
 	
   }
