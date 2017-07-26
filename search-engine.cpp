@@ -69,41 +69,12 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	//fprintf(note, "%s\n", "End of url.txt");
 	fclose(f1);
 	
-	//f1 = fopen("url.txt", "r");
-	/**
-	countLine = 0;
-	fprintf(note, "%s\n", "word.txt");
-	FILE *f2 = fopen("word.txt", "r");
-	if (f2 == NULL) {
-		printf("File not found\n");
-		fprintf(note, "%s\n", "File not found");
-		exit(1);
-	}
-	//else {
-		while ((c=fgetc(f2))!=-1) {
-			if (c == '\n') countLine++;
-		}
-	//}
-	fclose(f2);
-	*/
-	//FILE *
+
 	f1 = fopen("word.txt", "r");
-	//if (f1 == NULL) exit(1);
-	//delete temp;
-	//FILE *f2 = fopen("word.txt", "r");
+
 	if (f1 == NULL) exit(1);
-	//delete temp;
+
 	temp = new char[1000];
-
-//	char *word = (char *)malloc(100 * sizeof(char));
-//	char *tLine = (char *)malloc(500 * sizeof(char));
-//	char *mWord = (char *)malloc(100 * sizeof(char));
-//	int flag = 0;
-//	int wIndex;
-
-//	URLRecordList *head;
-//	URLRecordList *prev = new URLRecordList();
-//	int len;
 
 	while (fgets(temp, 1000, f1)) {
 		if (strcmp(temp, "\n") != 0) {
@@ -246,8 +217,10 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 //	}
 	char *token = strtok(temp, "+");
 	while (token != NULL) {
-		wordList[index] = strdup(token);
+		//wordList[index] = strdup(token);
 //		//fprintf(note, "%s\n", wordList[index]);
+		wordList[index] = new char[50];
+		strcpy(wordList[index], token);
 		index++;
 		token = strtok(NULL, "+");
 	}
@@ -323,10 +296,9 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
 
   for ( int i = 0; i < count; i++ ) {
-  	if (llist[i] != NULL) {
+  	if (llist[i] == NULL) continue;
     fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", counter + 1, llist[i]->_url, llist[i]->_url);
     fprintf( fout, "<blockquote>%s<p></blockquote>\n", llist[i]->_description);
-    }
     	counter++;
 	
   }
