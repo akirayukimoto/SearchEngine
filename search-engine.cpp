@@ -295,11 +295,14 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		for (j = 0; j < index; j++) {
 			URLRecordList *curr;
 			curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
-			fprintf(note, "%s\n", curr->_urlRecord->_url);
-			fprintf(note, "%s\n", curr->_urlRecord->_description);
+			//fprintf(note, "%s\n", curr->_urlRecord->_url);
+			//fprintf(note, "%s\n", curr->_urlRecord->_description);
 			int flag = 0;
 			while (curr != NULL) {
 				if (curr->_urlRecord == llist[i]) {
+		                        fprintf(note, "%s\n", curr->_urlRecord->_url);
+				        fprintf(note, "%s\n", curr->_urlRecord->_description);
+
 					flag = 1;
 				}
 				curr = curr->_next;
