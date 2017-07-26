@@ -299,8 +299,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	for (int i = 0; i < count; i++) {
 		int j;
 		for (j = 0; j < index; j++) {
-			URLRecordList *curr;
-			curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
+			URLRecordList *curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
 			//fprintf(note, "%s\n", curr->_urlRecord->_url);
 			//fprintf(note, "%s\n", curr->_urlRecord->_description);
 			int flag = 0;
