@@ -304,7 +304,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			fprintf(note, "%s\n", curr->_urlRecord->_description);
 			int flag = 0;
 			while (curr != NULL) {
-				if (curr->_urlRecord == llist[i]) {
+				if (!strcmp(curr->_urlRecord->_url, llist[i]->_url)) {
 		                        //fprintf(note, "%s\n", curr->_urlRecord->_url);
 				        //fprintf(note, "%s\n", curr->_urlRecord->_description);
 
@@ -324,9 +324,9 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   for ( int i = 0; i < count; i++ ) {
   	if (llist[i] != NULL) {
     	fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", counter + 1, llist[i]->_url, llist[i]->_url);
-	fprintf( note, "%s\n", llist[i]->_url);
+	//fprintf( note, "%s\n", llist[i]->_url);
 	fprintf( fout, "<blockquote>%s<p></blockquote>\n", llist[i]->_description);
-	fprintf( note, "%s\n", llist[i]->_description);
+	//fprintf( note, "%s\n", llist[i]->_description);
     	counter++;
 	}
 	
