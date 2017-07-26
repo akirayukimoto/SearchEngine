@@ -138,19 +138,21 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	*/
 	FILE *f2 = fopen("word.txt", "r");
 	if (f2 == NULL) exit(1);
+	delete temp;
+	temp = new char[500];
 
-	char *word = (char *)malloc(100 * sizeof(char));
-	char *tLine = (char *)malloc(500 * sizeof(char));
-	char *mWord = (char *)malloc(100 * sizeof(char));
-	int flag = 0;
-	int wIndex;
+//	char *word = (char *)malloc(100 * sizeof(char));
+//	char *tLine = (char *)malloc(500 * sizeof(char));
+//	char *mWord = (char *)malloc(100 * sizeof(char));
+//	int flag = 0;
+//	int wIndex;
 
-	URLRecordList *head;
-	URLRecordList *prev = new URLRecordList();
-	int len;
+//	URLRecordList *head;
+//	URLRecordList *prev = new URLRecordList();
+//	int len;
 
 	while (fgets(temp, 500, f2)) {
-		
+		/**
 		if (!strcmp(temp, "\r\n")) {
 			fprintf(note, "\n"); 
 			continue;
@@ -184,10 +186,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				prev = tmp;
 				element = strtok(NULL, "\n");
 			}
+			
 			_wordToURLList->addRecord(word, head);
 		}
 		//_wordToURLList->addRecord(word, head);
-		
+		*/
 		/**
 		tLine = strdup(temp);
 		while ((word = nextWord(tLine)) != NULL) {
@@ -216,7 +219,38 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		_wordToURLList->addRecord(mWord, (URLRecordList *)head);
 		flag = 0;
 		*/
+		if (strcmp(temp, "\n") != 0) {
+			char *token = new char[500];
+			token = strtok(temp, "\n");
+			char *word = new char[500];
+			strcpy(word, token);
+			URLRecordList *head = NULL;
+			URLRecordList *prev = NULL;
+
+			token = strtok(NULL, "\n");
+
+			while (token != NULL) {
+				int index = atoi(token);
+				if (list[index]->_url == NULL) continue;
+
+				URLRecordList *curr = new URLRecordList();
+				if (head == NULL) head = curr;
+
+				curr->_urlRecord = list[index];
+				curr->_next = NULL;
+
+				if (prev = NULL) prev->_next = curr;
+
+				prev = curr;
+
+				token = strtok(NULL, "\n");
+			}
+			_wordToURLList->addRecord(word, (URLRecordList *)head);
+			delete word;
+			delete token;
+		}
 	}
+	delete temp;
 	fclose(f2);
 	
 	//fprintf(note, "%s\n", "END");
