@@ -305,11 +305,11 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		
 		for (int j = 0; j < index; j++) {
 			URLRecordList *curr = (URLRecordList *)_wordToURLList->findRecord(wordList[j]);
-			fprintf(note, "%s\n", curr->_urlRecord->_url);
-			fprintf(note, "%s\n", curr->_urlRecord->_description);
+			//fprintf(note, "%s\n", curr->_urlRecord->_url);
+			//fprintf(note, "%s\n", curr->_urlRecord->_description);
 			int flag = 0;
 			while (curr != NULL) {
-				if (curr->_urlRecord->_url == llist[i]->_url) {
+				if (curr->_urlRecord == llist[i]) {
 		              //          fprintf(note, "%s\n", curr->_urlRecord->_url);
 				//        fprintf(note, "%s\n", curr->_urlRecord->_description);
 
@@ -317,7 +317,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				}
 				curr = curr->_next;
 			}
-			if (flag != 0) {
+			if (flag == 0) {
 				//fprintf(note, "%s\n", llist[i]->_url);
 				//fprintf(note, "%s\n", llist[i]->_description);
 				llist[i] == NULL;
