@@ -59,8 +59,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			token = strtok(temp, "\n");
 			strcpy(desc, token);
 
-			list[index]->_url = link;
-			list[index]->_description = desc;
+			list[index]->_url = strdup(link);
+			list[index]->_description = strdup(desc);
 		}
 		
 
