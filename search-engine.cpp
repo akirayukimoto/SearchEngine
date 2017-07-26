@@ -125,13 +125,13 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	while (fgets(temp, 1000, f1)) {
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
-			token = strtok(temp, "\n");
+			token = strtok(temp, " ");
 			char *word = new char[1000];
 			strcpy(word, token);
 			URLRecordList *head = NULL;
 			URLRecordList *prev = NULL;
 
-			token = strtok(NULL, "\n");
+			token = strtok(NULL, " \n");
 
 			while (token != NULL) {
 				int index = atoi(token);
@@ -147,7 +147,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 					prev = curr;
 	
-					token = strtok(NULL, "\n");
+					token = strtok(NULL, " \n");
 				
 			}
 			_wordToURLList->addRecord(word, (URLRecordList *)head);
