@@ -43,7 +43,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		fprintf(note, "%s\n", "File is not found");
 		exit(1);
 	}
-	else {
+	
+	//else {
 		while((c=fgetc(f1))!=-1) {
 		//c = fgetc(f1);
 			if (c == '\n') {
@@ -51,7 +52,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			}
 		//if (c == EOF) break;
 		}
-	}
+	//}
 	fclose(f1);
 
 	int numUrl = (countLine / 3) + 2;
@@ -82,10 +83,9 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	}
 	fprintf(note, "%s\n", "End of url.txt");
 	fclose(f1);
-	/**
+	
 	f1 = fopen("url.txt", "r");
-	fprintf
-	*/
+	
 	countLine = 0;
 	fprintf(note, "%s\n", "word.txt");
 	FILE *f2 = fopen("word.txt", "r");
@@ -142,6 +142,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 		//_wordToURLList->addRecord(word, head);
 	}
+	
 	fprintf(note, "%s\n", "END");
 	fclose(note);
 
