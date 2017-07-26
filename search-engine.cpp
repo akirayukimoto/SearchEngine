@@ -224,13 +224,14 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	//char *p = temp;
 	
 	char **wordList = new char*[50];
-	for (int i = 0; i < 50; i++) wordList[i] = NULL;
+	for (int i = 0; i < 50; i++) 
+		wordList[i] = NULL;
 
 	int index = 0;
 	char *tst = (char *)malloc(50 * sizeof(char));
 	if (match(temp)) {
 		while ((tst = nextWord(temp)) != NULL) {
-			wordList[index] = strdup(tst);
+			wordList[index++] = strdup(tst);
 			printf("%d %s\n", index, tst);
 		}
 	}
