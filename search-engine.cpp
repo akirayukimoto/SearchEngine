@@ -225,9 +225,9 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
   // Here the URLs printed are hardwired
  
- 	if (strlen(documentRequested) < 13) return;
+ 	if (strlen(documentRequested) <= 13) return;
 
-	char *temp = new char[strlen(documentRequested) + 13];
+	char *temp = new char[strlen(documentRequested)];
 	strcpy(temp, documentRequested + 13);
 	printf("%s\n", temp);
 	//char *p = temp;
