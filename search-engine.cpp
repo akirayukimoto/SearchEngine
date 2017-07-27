@@ -326,11 +326,16 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				curr = curr->_next;
 			}
 			if (flag == 0) {
-				fprintf(note, "%s\n", llist[i]->_url);
-				fprintf(note, "%s\n", llist[i]->_description);
+				//fprintf(note, "%s\n", llist[i]->_url);
+				//fprintf(note, "%s\n", llist[i]->_description);
 				llist[i] == NULL;
 			}
 		}
+	}
+
+	for (int i = 0; i < count; i++) {
+		fprintf(note, "%s\n", llist[i]->_url);
+		fprintf(note, "%s\n", llist[i]->_description);
 	}
 
 
