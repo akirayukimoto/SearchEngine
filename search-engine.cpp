@@ -220,8 +220,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	printf("%s\n", temp);
 	//char *p = temp;
 	
-	char **wordList = new char*[100];
-	for (int i = 0; i < 100; i++) 
+	char **wordList = new char*[1000];
+	for (int i = 0; i < 1000; i++) 
 		wordList[i] = NULL;
 
 	int index = 0;
@@ -279,7 +279,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
 	int count = 0;
 	int counter = 0;
-	URLRecord **llist = new URLRecord*[1000];
+	URLRecord **llist = new URLRecord*[10000];
 	for (int i = 0; i < index; i++) {
 		//fprintf(note, "%s\n", "find word");
 		URLRecordList *e;
@@ -296,8 +296,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			}
 			if (flag == 0) {
 				llist[count] = e->_urlRecord;
-				//fprintf(note, "%s\n", llist[count]->_url);
-				//fprintf(note, "%s\n", llist[count]->_description);
+				fprintf(note, "%s\n", llist[count]->_url);
+				fprintf(note, "%s\n", llist[count]->_description);
 				count++;
 			}
 			e = e->_next;
@@ -333,7 +333,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				//}
 				llist[i] = NULL;
 			}
-			
+		/**	
 			if (llist[i] == NULL) {
 				fprintf(note, "(null)\n");
 			}
@@ -342,6 +342,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				fprintf(note, "%s\n", llist[i]->_description);
 			}
 			fprintf(note, "\n");
+		*/
 			
 		}
 	}
