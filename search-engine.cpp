@@ -90,11 +90,9 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			char *word = new char[512];
 			strcpy(word, token);
 
-			URLRecordList *head;
-			head = NULL;
+			URLRecordList *head = NULL;
 
-			URLRecordList *prev;
-			prev = NULL;
+			URLRecordList *prev = NULL;
 
 			token = strtok(NULL, " \n");
 
@@ -297,8 +295,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			}
 			if (flag == 0) {
 				llist[count] = e->_urlRecord;
-				//fprintf(note, "%s\n", llist[count]->_url);
-				//fprintf(note, "%s\n", llist[count]->_description);
+				fprintf(note, "%s\n", llist[count]->_url);
+				fprintf(note, "%s\n", llist[count]->_description);
 				count++;
 			}
 			e = e->_next;
