@@ -325,9 +325,9 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				}
 				curr = curr->_next;
 			}
-			if (flag == 0) {
-				fprintf(note, "%s\n", llist[i]->_url);
-				fprintf(note, "%s\n", llist[i]->_description);
+			if (flag == 1) {
+				//fprintf(note, "%s\n", llist[i]->_url);
+				//fprintf(note, "%s\n", llist[i]->_description);
 				llist[i] == NULL;
 			}
 			/**
