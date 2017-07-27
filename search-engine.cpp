@@ -45,6 +45,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	for (int i = 0; i < 1024; i++) {
 		list[i] = new URLRecord();
 	}
+	int counts = 0;
 	while (fgets(temp, 1000, f1)) {
 		if (strcmp(temp, "\n") != 0) {
 			char *token = new char[1000];
@@ -63,6 +64,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 			list[index]->_url = link;
 			list[index]->_description = desc;
+			counts++;
 			//fprintf(note, "%d\n", index);
 			//fprintf(note, "%s\n", list[index]->_url);
 			//fprintf(note, "%s\n", list[index]->_description);
@@ -74,7 +76,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	delete temp;
 	//fprintf(note, "%s\n", "End of url.txt");
 	fclose(f1);
-	
+	for (int i = 0; i < counts; i++) {
+		fprintf(note, "%s\n", list[i]->_url);
+		fprintf(note, "%s\n", list[i]->_description);
+		fprintf(note, "\n");
+	}
 
 	f1 = fopen("word.txt", "r");
 
@@ -114,13 +120,13 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				if (prev != NULL)
 					prev->_next = entry;
 				prev = entry;
-				fprintf(note, "%d\n", position);
+				//fprintf(note, "%d\n", position);
 
 				token = strtok(NULL, " ");
 			}
 			_wordToURLList->addRecord(word, (URLRecordList *)head);
 			//fprintf(note, "%s\n", word);
-			URLRecordList *curr = head;
+			//URLRecordList *curr = head;
 			delete word;
 			delete token;
 		}
