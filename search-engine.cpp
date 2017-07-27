@@ -84,10 +84,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 	while (fgets(temp, 1000, f1)) {
 		if (strcmp(temp, "\n") != 0) {
-			char *token = new char[512];
+			char *token = new char[1000];
 			token = strtok(temp, " \n");
 
-			char *word = new char[512];
+			char *word = new char[1000];
 			strcpy(word, token);
 
 			URLRecordList *head = NULL;
@@ -102,11 +102,14 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 					continue;
 
 				URLRecordList *entry = new URLRecordList();
-				if (head == NULL)
-					head = entry;
+				//if (head == NULL)
+				//	head = entry;
 
 				entry->_urlRecord = list[position];
 				entry->_next = NULL;
+
+				if (head == NULL)
+					head = entry;
 
 				if (prev != NULL)
 					prev->_next = entry;
@@ -288,7 +291,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			int flag = 0;
 			for (int j = 0; j < count; j++) {
 				if (llist[j] == e->_urlRecord) {
-					fprintf(note, "%s\n", llist[j]->_url);
+					//fprintf(note, "%s\n", llist[j]->_url);
 					flag = 1;
 					break;
 					//fprintf(note, "Flag is 1\n");
