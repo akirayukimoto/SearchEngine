@@ -318,8 +318,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			int flag = 0;
 			while (curr != NULL) {
 				if (curr->_urlRecord == llist[i]) {
-		              //          fprintf(note, "%s\n", curr->_urlRecord->_url);
-				//        fprintf(note, "%s\n", curr->_urlRecord->_description);
+		                        fprintf(note, "%s\n", curr->_urlRecord->_url);
+				        fprintf(note, "%s\n", curr->_urlRecord->_description);
 
 					flag = 1;
 				}
