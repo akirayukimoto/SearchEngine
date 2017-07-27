@@ -56,7 +56,7 @@ HashDictionary::findRecord( KeyType key)
 	int h = hash(key);
 	HashNode *curr = buckets[h];
 	while (curr != NULL) {
-		if (!strcmp(key, curr->key)) {
+		if (strcmp(key, curr->key) == 0) {
 			return (DataType)curr->data;
 		}
 		curr = curr->next;

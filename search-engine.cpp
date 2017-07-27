@@ -114,6 +114,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				if (prev != NULL)
 					prev->_next = entry;
 				prev = entry;
+				fprintf(note, "%d\n", position);
 
 				token = strtok(NULL, " ");
 			}
