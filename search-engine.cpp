@@ -288,6 +288,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			int flag = 0;
 			for (int j = 0; j < count; j++) {
 				if (llist[j] == e->_urlRecord) {
+					//fprintf(note, "%s\n", llist[j]->_url);
 					flag = 1;
 					break;
 					//fprintf(note, "Flag is 1\n");
@@ -295,8 +296,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			}
 			if (flag == 0) {
 				llist[count] = e->_urlRecord;
-				fprintf(note, "%s\n", llist[count]->_url);
-				fprintf(note, "%s\n", llist[count]->_description);
+				//fprintf(note, "%s\n", llist[count]->_url);
+				//fprintf(note, "%s\n", llist[count]->_description);
 				count++;
 			}
 			e = e->_next;
@@ -332,7 +333,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				//}
 				llist[i] = NULL;
 			}
-			/**
+			
 			if (llist[i] == NULL) {
 				fprintf(note, "(null)\n");
 			}
@@ -341,7 +342,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				fprintf(note, "%s\n", llist[i]->_description);
 			}
 			fprintf(note, "\n");
-			*/
+			
 		}
 	}
 /**
