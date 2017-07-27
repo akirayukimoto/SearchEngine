@@ -76,11 +76,13 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	delete temp;
 	//fprintf(note, "%s\n", "End of url.txt");
 	fclose(f1);
+	/**
 	for (int i = 0; i < counts; i++) {
 		fprintf(note, "%s\n", list[i]->_url);
 		fprintf(note, "%s\n", list[i]->_description);
 		fprintf(note, "\n");
 	}
+	*/
 
 	f1 = fopen("word.txt", "r");
 
@@ -104,8 +106,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 			while (token != NULL) {
 				int position = atoi(token);
-				if (list[position]->_url == NULL)
-					continue;
+				//if (list[position]->_url == NULL)
+				//	continue;
 
 				URLRecordList *entry = new URLRecordList();
 				//if (head == NULL)
