@@ -330,14 +330,22 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				//fprintf(note, "%s\n", llist[i]->_description);
 				llist[i] == NULL;
 			}
+			if (llist[i] == NULL) {
+				fprintf(note, "(null)\n");
+			}
+			else {
+				fprintf(note, "%s\n", llist[i]->_url);
+				fprintf(note, "%s\n", llist[i]->_description);
+			}
+			fprintf(note, "\n");
 		}
 	}
-
+/**
 	for (int i = 0; i < count; i++) {
 		fprintf(note, "%s\n", llist[i]->_url);
 		fprintf(note, "%s\n", llist[i]->_description);
 	}
-
+*/
 
   for ( int i = 0; i < count; i++ ) {
   	if (llist[i] != NULL) {
