@@ -106,8 +106,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 
 			while (token != NULL) {
 				int position = atoi(token);
-				//if (list[position]->_url == NULL)
-				//	continue;
+				if (list[position]->_url == NULL)
+					continue;
 
 				URLRecordList *entry = new URLRecordList();
 				//if (head == NULL)
