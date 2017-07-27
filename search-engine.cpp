@@ -306,12 +306,12 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			e = e->_next;
 		}
 	}
-/**
+
 	for (int i = 0; i < count; i++) {
                                  fprintf(note, "%s\n", llist[i]->_url);
                                  fprintf(note, "%s\n", llist[i]->_description);
 	}
-*/
+
 
 	for (int i = 0; i < count; i++) {
 		
