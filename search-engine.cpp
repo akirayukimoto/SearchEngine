@@ -115,7 +115,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 					prev->_next = entry;
 				prev = entry;
 
-				token = strtok(NULL, " \n");
+				token = strtok(NULL, " ");
 			}
 			_wordToURLList->addRecord(word, (URLRecordList *)head);
 			//fprintf(note, "%s\n", word);
