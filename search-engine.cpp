@@ -326,10 +326,11 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				curr = curr->_next;
 			}
 			if (flag == 0) {
-				//fprintf(note, "%s\n", llist[i]->_url);
-				//fprintf(note, "%s\n", llist[i]->_description);
+				fprintf(note, "%s\n", llist[i]->_url);
+				fprintf(note, "%s\n", llist[i]->_description);
 				llist[i] == NULL;
 			}
+			/**
 			if (llist[i] == NULL) {
 				fprintf(note, "(null)\n");
 			}
@@ -338,6 +339,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				fprintf(note, "%s\n", llist[i]->_description);
 			}
 			fprintf(note, "\n");
+			*/
 		}
 	}
 /**
